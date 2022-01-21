@@ -4,7 +4,6 @@ aiohttp==3.6.2
     # via -r requirements.in
 aioredis==1.3.1
     # via channels-redis
-    # via -r /awx_devel/requirements/requirements_git.txt
 ansiconv==1.0.0
     # via -r requirements.in
 asciichartpy==1.5.25
@@ -86,7 +85,7 @@ dictdiffer==0.8.1
     # via openshift
 distro==1.5.0
     # via -r requirements.in
-django==2.2.20
+django==2.2.26
     # via
     #   -r requirements.in
     #   channels
@@ -133,8 +132,6 @@ djangorestframework==3.12.1
     # via -r requirements.in
 djangorestframework-yaml==1.0.3
     # via -r requirements.in
-docutils==0.16
-    # via python-daemon
 future==0.16.0
     # via django-radius
 gitdb==4.0.2
@@ -190,8 +187,6 @@ jsonschema==3.2.0
     # via -r requirements.in
 kubernetes==11.0.0
     # via openshift
-lockfile==0.12.2
-    # via python-daemon
 lxml==4.5.0
     # via xmlsec
 markdown==3.2.1
@@ -223,13 +218,11 @@ oauthlib==3.1.0
     #   requests-oauthlib
     #   social-auth-core
 openshift==0.11.0
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 pbr==5.6.0
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 pexpect==4.7.0
-    # via
-    #   -r requirements.in
-    #   ansible-runner
+    # via -r requirements.in
 pkgconfig==1.5.1
     # via xmlsec
 prometheus-client==0.7.1
@@ -270,8 +263,6 @@ pyrad==2.3
     # via django-radius
 pyrsistent==0.15.7
     # via jsonschema
-python-daemon==2.2.4
-    # via ansible-runner
 python-dateutil==2.8.1
     # via
     #   adal
@@ -286,7 +277,7 @@ python-ldap==3.4.0
 python-string-utils==1.0.0
     # via openshift
 python-tss-sdk==1.0.0
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 python3-openid==3.1.0
     # via social-auth-core
 python3-saml==1.9.0
@@ -300,12 +291,11 @@ pytz==2019.3
 pyyaml==5.4.1
     # via
     #   -r requirements.in
-    #   ansible-runner
     #   djangorestframework-yaml
     #   kubernetes
     #   receptorctl
 receptorctl==1.1.1
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 redis==3.4.1
     # via
     #   -r requirements.in
@@ -338,7 +328,6 @@ service-identity==18.1.0
     # via twisted
 six==1.14.0
     # via
-    #   ansible-runner
     #   automat
     #   cryptography
     #   django-extensions
@@ -362,7 +351,7 @@ six==1.14.0
     #   twilio
     #   websocket-client
 slack-sdk==3.11.2
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 smmap==3.0.1
     # via gitdb
 social-auth-app-django==3.1.0
@@ -408,7 +397,7 @@ zope.interface==5.0.0
 
 # The following packages are considered to be unsafe in a requirements file:
 pip==21.2.4
-    # via -r /awx_devel/requirements/requirements.in
+    # via -r requirements.in
 setuptools==58.2.0
     # via
     #   -r requirements.in
@@ -417,5 +406,4 @@ setuptools==58.2.0
     #   jsonschema
     #   kubernetes
     #   markdown
-    #   python-daemon
     #   zope.interface
