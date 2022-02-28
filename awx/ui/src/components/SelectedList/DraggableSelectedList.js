@@ -38,7 +38,11 @@ function DraggableSelectedList({ selected, onRemove, onRowDrag }) {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   function dragItem(item, dest) {
+=======
+  const dragItem = (item, dest) => {
+>>>>>>> upstream/devel
 =======
   const dragItem = (item, dest) => {
 >>>>>>> upstream/devel
@@ -50,7 +54,11 @@ function DraggableSelectedList({ selected, onRemove, onRowDrag }) {
     onRowDrag(newItems);
     return true;
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
+=======
+  };
+>>>>>>> upstream/devel
 =======
   };
 >>>>>>> upstream/devel

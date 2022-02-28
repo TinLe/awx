@@ -165,7 +165,10 @@ function SessionProvider({ children }) {
   }, []);
 
 <<<<<<< HEAD:awx/ui/src/contexts/Session.js
+<<<<<<< HEAD:awx/ui/src/contexts/Session.js
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
   const sessionValue = useMemo(
     () => ({
       isUserBeingLoggedOut,
@@ -189,12 +192,16 @@ function SessionProvider({ children }) {
     ]
   );
 
+<<<<<<< HEAD:awx/ui/src/contexts/Session.js
+>>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
   if (isLoading) {
     return null;
   }
 
   return (
+<<<<<<< HEAD:awx/ui/src/contexts/Session.js
 <<<<<<< HEAD:awx/ui/src/contexts/Session.js
     <SessionContext.Provider
       value={{
@@ -208,6 +215,9 @@ function SessionProvider({ children }) {
         setAuthRedirectTo,
       }}
     >
+=======
+    <SessionContext.Provider value={sessionValue}>
+>>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
 =======
     <SessionContext.Provider value={sessionValue}>
 >>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js

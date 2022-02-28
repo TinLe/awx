@@ -19,7 +19,6 @@ from uuid import uuid4
 
 
 # Django
-from django_guid.middleware import GuidMiddleware
 from django.conf import settings
 from django.db import transaction
 

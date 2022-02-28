@@ -99,12 +99,15 @@ function Search({
   };
 
 <<<<<<< HEAD:awx/ui/src/components/Search/Search.js
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
   const chipsByKey = getChipsByKey(
     parseQueryString(qsConfig, location.search),
     columns,
     qsConfig
   );
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
   const params = parseQueryString(qsConfig, location.search);
   if (params?.host_filter) {
     params.ansible_facts = params.host_filter.substring(
@@ -113,6 +116,9 @@ function Search({
     delete params.host_filter;
   }
   const chipsByKey = getChipsByKey(params, columns, qsConfig);
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
 
   const { name: searchColumnName } = columns.find(
@@ -180,6 +186,7 @@ function Search({
           )) ||
             (options && (
 <<<<<<< HEAD:awx/ui/src/components/Search/Search.js
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
               <>
                 <Select
                   variant={SelectVariant.checkbox}
@@ -212,6 +219,8 @@ function Search({
                 </Select>
               </>
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
               <Select
                 variant={SelectVariant.checkbox}
                 aria-label={name}
@@ -241,6 +250,9 @@ function Search({
                   </SelectOption>
                 ))}
               </Select>
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
             )) ||
             (isBoolean && (

@@ -17,6 +17,10 @@ import {
 import { SearchIcon, QuestionCircleIcon } from '@patternfly/react-icons';
 import styled from 'styled-components';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { useLocation } from 'react-router-dom';
+>>>>>>> upstream/devel
 =======
 import { useLocation } from 'react-router-dom';
 >>>>>>> upstream/devel
@@ -47,6 +51,11 @@ function AdvancedSearch({
   enableNegativeFiltering,
   enableRelatedFuzzyFiltering,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected,
+  isFilterCleared,
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected,
   isFilterCleared,
@@ -56,7 +65,10 @@ function AdvancedSearch({
     (sKey) => !searchableKeys.map(({ key }) => key).includes(sKey)
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
   const [isPrefixDropdownOpen, setIsPrefixDropdownOpen] = useState(false);
@@ -66,7 +78,10 @@ function AdvancedSearch({
   const [keySelection, setKeySelection] = useState(null);
   const [searchValue, setSearchValue] = useState('');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/devel
   const [isTextInputDisabled, setIsTextInputDisabled] = useState(false);
   const { pathname, search } = useLocation();
 
@@ -97,6 +112,9 @@ function AdvancedSearch({
     }
   }, [keySelection, pathname, search]);
 
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
   const config = useConfig();
 
@@ -110,7 +128,11 @@ function AdvancedSearch({
 
   useEffect(() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (relatedSearchKeySelected) {
+=======
+    if (relatedSearchKeySelected && keySelection !== 'ansible_facts') {
+>>>>>>> upstream/devel
 =======
     if (relatedSearchKeySelected && keySelection !== 'ansible_facts') {
 >>>>>>> upstream/devel
@@ -136,14 +158,20 @@ function AdvancedSearch({
         .filter((val) => !!val)
         .join('__');
 <<<<<<< HEAD
+<<<<<<< HEAD
       onSearch(actualSearchKey, searchValue);
 =======
+=======
+>>>>>>> upstream/devel
       if (keySelection === 'ansible_facts') {
         const ansibleFactValue = `${actualSearchKey}__${searchValue}`;
         onSearch('host_filter', ansibleFactValue);
       } else {
         onSearch(actualSearchKey, searchValue);
       }
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
       setSearchValue('');
     }
@@ -196,6 +224,7 @@ function AdvancedSearch({
   );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   return (
     <AdvancedGroup>
       {lookupSelection === 'search' ? (
@@ -208,6 +237,8 @@ function AdvancedSearch({
         renderSetType()
       )}
 =======
+=======
+>>>>>>> upstream/devel
   const renderLookupType = () => {
     if (keySelection === 'ansible_facts') return null;
 
@@ -276,6 +307,9 @@ function AdvancedSearch({
   return (
     <AdvancedGroup>
       {renderLookupSelection()}
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
       <Select
         ouiaId="set-key-typeahead"
@@ -330,6 +364,7 @@ function AdvancedSearch({
         ]}
       </Select>
 <<<<<<< HEAD
+<<<<<<< HEAD
       {relatedSearchKeySelected ? (
         <RelatedLookupTypeInput
           value={lookupSelection}
@@ -356,10 +391,15 @@ function AdvancedSearch({
           onKeyDown={handleAdvancedTextKeyDown}
         />
 =======
+=======
+>>>>>>> upstream/devel
       {renderLookupType()}
 
       <InputGroup>
         {renderTextInput()}
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
         <div css={!searchValue && `cursor:not-allowed`}>
           <Button
@@ -396,6 +436,10 @@ AdvancedSearch.propTypes = {
   enableNegativeFiltering: bool,
   enableRelatedFuzzyFiltering: bool,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: func,
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected: func,
 >>>>>>> upstream/devel
@@ -408,6 +452,10 @@ AdvancedSearch.defaultProps = {
   enableNegativeFiltering: true,
   enableRelatedFuzzyFiltering: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: () => {},
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected: () => {},
 >>>>>>> upstream/devel

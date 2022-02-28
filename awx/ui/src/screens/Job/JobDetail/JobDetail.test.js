@@ -47,7 +47,11 @@ describe('<JobDetail />', () => {
     // StatusIcon adds visibly hidden accessibility text " successful "
     assertDetail('Job ID', '2');
 <<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.test.js
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.test.js
     assertDetail('Status', ' successful Successful');
+=======
+    assertDetail('Status', 'Successful');
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.test.js
 =======
     assertDetail('Status', 'Successful');
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.test.js
@@ -118,6 +122,7 @@ describe('<JobDetail />', () => {
       />
     );
     expect(wrapper.find(`Detail[label="Finished"]`).length).toBe(0);
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.test.js
   });
 
   test('should not display finished date', () => {
@@ -130,6 +135,8 @@ describe('<JobDetail />', () => {
       />
     );
     expect(wrapper.find(`Detail[label="Finished"]`).length).toBe(0);
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.test.js
   });
 
   test('should display module name and module arguments', () => {
@@ -292,6 +299,7 @@ describe('<JobDetail />', () => {
   });
 
 <<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.test.js
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.test.js
   test('DELETED is shown for required Job resources that have been deleted', () => {
     const newMockData = {
       ...mockJobData,
@@ -311,6 +319,8 @@ describe('<JobDetail />', () => {
     assertMissingDetail('Project');
     assertMissingDetail('Inventory');
   });
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.test.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.test.js
   test('should display Playbook Check detail', () => {

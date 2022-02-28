@@ -194,11 +194,7 @@ def generate_jobs(jobs, batch_size, time_delta):
         with connection.cursor() as cursor:
             query, params = query.sql_with_params()[0]
             cursor.execute(query, params)
-<<<<<<< HEAD
-        return ujs[-1], jt_pos, [ujs[i].pk for i in range(len(ujs))]
-=======
         return ujs[-1], jt_pos, [uj.pk for uj in ujs]
->>>>>>> upstream/devel
 
     i = 1
     jt_pos = 0
@@ -219,34 +215,20 @@ def generate_jobs(jobs, batch_size, time_delta):
         i += 1
         jobs -= batch_size
         created_job_ids += ujs_pk
-<<<<<<< HEAD
-    print('Creted Job IDS: {}'.format(created_job_ids))
-    #return created
-=======
     print('Created Job IDS: {}'.format(created_job_ids))
     # return created
->>>>>>> upstream/devel
     return created_job_ids
 
 
 def generate_events(events, job, time_delta):
     conn = psycopg2.connect(dsn)
     cursor = conn.cursor()
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> upstream/devel
     created_time = datetime.datetime.today() - time_delta - datetime.timedelta(seconds=5)
     modified_time = datetime.datetime.today() - time_delta
     created_stamp = created_time.strftime("%Y-%m-%d %H:%M:%S")
     modified_stamp = modified_time.strftime("%Y-%m-%d %H:%M:%S")
-<<<<<<< HEAD
-    
-    # get all the indexes for main_jobevent
-=======
 
->>>>>>> upstream/devel
     print(f'attaching {events} events to job {job}')
     cores = multiprocessing.cpu_count()
     workers = []
@@ -276,11 +258,7 @@ def generate_events(events, job, time_delta):
     cursor.execute('ALTER SEQUENCE firehose_line_seq RESTART WITH 0;')
     cursor.execute("SELECT nextval('firehose_line_seq')")
     conn.commit()
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> upstream/devel
     cursor.execute(
         "UPDATE main_jobevent SET "
         "counter=nextval('firehose_seq')::integer,"
@@ -294,25 +272,10 @@ def generate_events(events, job, time_delta):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-<<<<<<< HEAD
-    parser.add_argument(
-        '--jobs-per-hour', type=int, help='Number of jobs to create.',
-        default=1000) # 1M by default
-    parser.add_argument(
-        '--events-per-job', type=int, help='Number of events to create.',
-        default=1345) # 1B by default
-    parser.add_argument(
-        '--batch-size', type=int, help='Number of jobs to create in a single batch.',
-        default=100)
-    parser.add_argument(
-        '--days-delta', type=int, help='Number of days old to create the events. Defaults to 31.',
-        default=31)
-=======
     parser.add_argument('--jobs-per-hour', type=int, help='Number of jobs to create.', default=1000)  # 1M by default
     parser.add_argument('--events-per-job', type=int, help='Number of events to create.', default=1345)  # 1B by default
     parser.add_argument('--batch-size', type=int, help='Number of jobs to create in a single batch.', default=100)
     parser.add_argument('--days-delta', type=int, help='Number of days old to create the events. Defaults to 31.', default=31)
->>>>>>> upstream/devel
     params = parser.parse_args()
     jobs = params.jobs_per_hour
     events = params.events_per_job
@@ -322,11 +285,7 @@ if __name__ == '__main__':
         conn = psycopg2.connect(dsn)
         cursor = conn.cursor()
 
-<<<<<<< HEAD
-        #Drop all the indexes before generating jobs
-=======
         # Drop all the indexes before generating jobs
->>>>>>> upstream/devel
         print('removing indexes and constraints')
         # get all the indexes for main_jobevent
         # disable WAL to drastically increase write speed
@@ -334,24 +293,16 @@ if __name__ == '__main__':
         # insert data as quickly as possible without concern for the risk of
         # data loss on crash
         # see: https://www.compose.com/articles/faster-performance-with-unlogged-tables-in-postgresql/
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> upstream/devel
         cursor.execute('ALTER TABLE main_jobevent SET UNLOGGED')
         cursor.execute("SELECT indexname, indexdef FROM pg_indexes WHERE tablename='main_jobevent' AND indexname != 'main_jobevent_pkey1';")
         indexes = cursor.fetchall()
-        
+
         cursor.execute(
-<<<<<<< HEAD
-            "SELECT conname, contype, pg_catalog.pg_get_constraintdef(r.oid, true) as condef FROM pg_catalog.pg_constraint r WHERE r.conrelid = 'main_jobevent'::regclass AND conname != 'main_jobevent_pkey1';") # noqa
-=======
             "SELECT conname, contype, pg_catalog.pg_get_constraintdef(r.oid, true) as condef FROM pg_catalog.pg_constraint r WHERE r.conrelid = 'main_jobevent'::regclass AND conname != 'main_jobevent_pkey1';"
         )  # noqa
->>>>>>> upstream/devel
         constraints = cursor.fetchall()
-        
+
         # drop all indexes for speed
         for indexname, indexdef in indexes:
             if indexname == 'main_jobevent_pkey_new':  # Dropped by the constraint
@@ -363,12 +314,7 @@ if __name__ == '__main__':
             print(f'ALTER TABLE main_jobevent DROP CONSTRAINT IF EXISTS {conname}')
         conn.commit()
 
-<<<<<<< HEAD
-
-        for i_day in range(days_delta,0,-1):
-=======
         for i_day in range(days_delta, 0, -1):
->>>>>>> upstream/devel
             for j_hour in range(24):
                 time_delta = datetime.timedelta(days=i_day, hours=j_hour, seconds=0)
                 created_job_ids = generate_jobs(jobs, batch_size=batch_size, time_delta=time_delta)
@@ -377,15 +323,11 @@ if __name__ == '__main__':
                 print(datetime.datetime.utcnow().isoformat())
         conn.close()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/devel
     finally:
         # restore all indexes
         print(datetime.datetime.utcnow().isoformat())
         print('restoring indexes and constraints (this may take awhile)')
-        
+
         workers = []
         for indexname, indexdef in indexes:
             if indexname == 'main_jobevent_pkey_new':  # Created by the constraint
@@ -393,13 +335,13 @@ if __name__ == '__main__':
             p = multiprocessing.Process(target=cleanup, args=(indexdef,))
             p.daemon = True
             workers.append(p)
-        
+
         for w in workers:
             w.start()
-        
+
         for w in workers:
             w.join()
-       
+
         for conname, contype, condef in constraints:
             if contype == 'c':
                 # if there are any check constraints, don't add them back
@@ -407,13 +349,8 @@ if __name__ == '__main__':
                 # worthless, because Ansible doesn't emit counters, line
                 # numbers, verbosity, etc... < 0)
                 continue
-<<<<<<< HEAD
-        sql = f'ALTER TABLE main_jobevent ADD CONSTRAINT {conname} {condef}'
-        cleanup(sql)
-=======
 
             sql = f'ALTER TABLE main_jobevent ADD CONSTRAINT {conname} {condef}'
             cleanup(sql)
 
->>>>>>> upstream/devel
         print(datetime.datetime.utcnow().isoformat())

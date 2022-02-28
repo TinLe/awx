@@ -6,11 +6,7 @@ ENV TARGET=${TARGET}
 ENV CI=true
 WORKDIR /ui
 ADD .eslintignore .eslintignore
-<<<<<<< HEAD:awx/ui/Dockerfile
-ADD .eslintrc .eslintrc
-=======
 ADD .eslintrc.json .eslintrc.json
->>>>>>> upstream/devel:awx/ui_next/Dockerfile
 ADD .linguirc .linguirc
 ADD jsconfig.json jsconfig.json
 ADD public public

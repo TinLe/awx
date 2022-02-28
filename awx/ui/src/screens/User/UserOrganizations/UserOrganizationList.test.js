@@ -72,10 +72,6 @@ describe('<UserOrganizationlist />', () => {
       page_size: 20,
       type: 'organization',
     });
-<<<<<<< HEAD:awx/ui/src/screens/User/UserOrganizations/UserOrganizationList.test.js
-    expect(UsersAPI.readOrganizationOptions).toBeCalled();
-=======
     expect(UsersAPI.readOrganizationOptions).toBeCalledWith('1');
->>>>>>> upstream/devel:awx/ui_next/src/screens/User/UserOrganizations/UserOrganizationList.test.js
   });
 });

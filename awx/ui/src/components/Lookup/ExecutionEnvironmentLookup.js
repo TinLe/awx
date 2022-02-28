@@ -151,6 +151,7 @@ function ExecutionEnvironmentLookup({
 
   const renderLookup = () => (
 <<<<<<< HEAD:awx/ui/src/components/Lookup/ExecutionEnvironmentLookup.js
+<<<<<<< HEAD:awx/ui/src/components/Lookup/ExecutionEnvironmentLookup.js
     <>
       <Lookup
         id={id}
@@ -196,6 +197,8 @@ function ExecutionEnvironmentLookup({
       />
     </>
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/components/Lookup/ExecutionEnvironmentLookup.js
     <Lookup
       id={id}
       header={t`Execution Environment`}
@@ -238,6 +241,9 @@ function ExecutionEnvironmentLookup({
         />
       )}
     />
+<<<<<<< HEAD:awx/ui/src/components/Lookup/ExecutionEnvironmentLookup.js
+>>>>>>> upstream/devel:awx/ui_next/src/components/Lookup/ExecutionEnvironmentLookup.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/components/Lookup/ExecutionEnvironmentLookup.js
   );
 

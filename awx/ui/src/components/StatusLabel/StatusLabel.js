@@ -10,6 +10,10 @@ const colors = {
   success: 'green',
   successful: 'green',
 <<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+=======
+  ok: 'green',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
 =======
   ok: 'green',
 >>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
@@ -24,6 +28,7 @@ const colors = {
   disabled: 'grey',
   canceled: 'orange',
 <<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
 };
 const icons = {
   success: CheckCircleIcon,
@@ -36,6 +41,9 @@ const icons = {
   waiting: ClockIcon,
   disabled: MinusCircleIcon,
   canceled: ExclamationTriangleIcon,
+=======
+  changed: 'orange',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
 =======
   changed: 'orange',
 >>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
@@ -86,6 +94,10 @@ StatusLabel.propTypes = {
     'success',
     'successful',
 <<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+=======
+    'ok',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
 =======
     'ok',
 >>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js

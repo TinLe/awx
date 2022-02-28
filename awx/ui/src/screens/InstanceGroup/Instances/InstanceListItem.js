@@ -62,7 +62,10 @@ function InstanceListItem({
     )
   );
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
   const { id } = useParams();
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 
@@ -193,9 +196,12 @@ function InstanceListItem({
           <ExpandableRowContent>
             <DetailList>
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
               <Detail label={t`Node Type`} value={instance.node_type} />
               <Detail
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
               <Detail
                 data-cy="running-jobs"
                 value={instance.jobs_running}
@@ -208,12 +214,19 @@ function InstanceListItem({
               />
               <Detail
                 data-cy="policy-type"
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
                 label={t`Policy Type`}
                 value={instance.managed_by_policy ? t`Auto` : t`Manual`}
               />
               <Detail
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+=======
+                data-cy="last-health-check"
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
                 data-cy="last-health-check"
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js

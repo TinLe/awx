@@ -217,12 +217,15 @@ function JobDetail({ job, inventorySourceLabels }) {
         )}
         {project && (
 <<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.js
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.js
           <Detail
             dataCy="job-project"
             label={t`Project`}
             value={buildProjectDetailValue()}
           />
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.js
           <>
             <Detail
               dataCy="job-project"
@@ -243,6 +246,9 @@ function JobDetail({ job, inventorySourceLabels }) {
               }
             />
           </>
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobDetail/JobDetail.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobDetail/JobDetail.js
         )}
         {scmBranch && (

@@ -21,10 +21,13 @@ const instance = [
     id: 1,
     type: 'instance',
     url: '/api/v2/instances/1/',
+<<<<<<< HEAD
     related: {
       jobs: '/api/v2/instances/1/jobs/',
       instance_groups: '/api/v2/instances/1/instance_groups/',
     },
+=======
+>>>>>>> upstream/devel
     uuid: '00000000-0000-0000-0000-000000000000',
     hostname: 'awx',
     created: '2020-07-14T19:03:49.000054Z',
@@ -37,8 +40,11 @@ const instance = [
     jobs_running: 0,
     jobs_total: 68,
     last_health_check: '2021-09-15T18:02:07.270664Z',
+<<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
 =======
+=======
+>>>>>>> upstream/devel
     cpu: 6,
     memory: 2087469056,
     cpu_capacity: 24,
@@ -51,10 +57,16 @@ const instance = [
     id: 2,
     type: 'instance',
     url: '/api/v2/instances/1/',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+=======
+>>>>>>> upstream/devel
     related: {
       jobs: '/api/v2/instances/1/jobs/',
       instance_groups: '/api/v2/instances/1/instance_groups/',
     },
+<<<<<<< HEAD
     uuid: '00000000-0000-0000-0000-000000000001',
     hostname: 'awx-control',
     created: '2020-07-14T19:03:49.000054Z',
@@ -85,6 +97,9 @@ const instance = [
       jobs: '/api/v2/instances/1/jobs/',
       instance_groups: '/api/v2/instances/1/instance_groups/',
     },
+=======
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+>>>>>>> upstream/devel
     uuid: '00000000-0000-0000-0000-000000000001',
     hostname: 'awx-control',
     created: '2020-07-14T19:03:49.000054Z',
@@ -103,9 +118,17 @@ const instance = [
     mem_capacity: 1,
     enabled: true,
     managed_by_policy: true,
+<<<<<<< HEAD
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
     node_type: 'control',
+=======
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+    node_type: 'hop',
+=======
+    node_type: 'control',
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+>>>>>>> upstream/devel
   },
 ];
 
@@ -196,7 +219,15 @@ describe('<InstanceListItem/>', () => {
       );
     });
     expect(wrapper.find('Td[dataLabel="Name"]').find('Link').prop('to')).toBe(
+<<<<<<< HEAD
       '/instance_groups/1/instances/1/details'
+=======
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+      '/instances/1/details'
+=======
+      '/instance_groups/1/instances/1/details'
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+>>>>>>> upstream/devel
     );
     expect(wrapper.find('Td').at(2).text()).toBe('awx');
     expect(wrapper.find('Progress').prop('value')).toBe(40);
@@ -308,6 +339,7 @@ describe('<InstanceListItem/>', () => {
       );
     });
     expect(wrapper.find('InstanceListItem').prop('isExpanded')).toBe(true);
+<<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
     expect(wrapper.find('Detail[label="Node Type"]').prop('value')).toBe(
       'hybrid'
@@ -316,6 +348,14 @@ describe('<InstanceListItem/>', () => {
     expect(wrapper.find('Detail[label="Running Jobs"]').prop('value')).toBe(0);
     expect(wrapper.find('Detail[label="Total Jobs"]').prop('value')).toBe(68);
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+
+=======
+    expect(wrapper.find('Detail[label="Running Jobs"]').prop('value')).toBe(0);
+    expect(wrapper.find('Detail[label="Total Jobs"]').prop('value')).toBe(68);
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+>>>>>>> upstream/devel
     expect(wrapper.find('Detail[label="Policy Type"]').prop('value')).toBe(
       'Auto'
     );
@@ -323,4 +363,31 @@ describe('<InstanceListItem/>', () => {
       wrapper.find('Detail[label="Last Health Check"]').prop('value')
     ).toBe('9/15/2021, 6:02:07 PM');
   });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+  test('Hop should not render some things', async () => {
+    const onSelect = jest.fn();
+    await act(async () => {
+      wrapper = mountWithContexts(
+        <table>
+          <tbody>
+            <InstanceListItem
+              instance={instance[1]}
+              onSelect={onSelect}
+              fetchInstances={() => {}}
+            />
+          </tbody>
+        </table>
+      );
+    });
+    expect(wrapper.find('InstanceToggle').length).toBe(0);
+    expect(
+      wrapper.find("Td[dataLabel='Instance group used capacity']").length
+    ).toBe(0);
+    expect(wrapper.find("Td[dataLabel='Capacity Adjustment']").length).toBe(0);
+  });
+=======
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+>>>>>>> upstream/devel
 });

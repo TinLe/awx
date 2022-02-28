@@ -122,7 +122,10 @@ describe('<InventoryEdit />', () => {
       });
     });
 <<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+<<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 
     expect(InventoriesAPI.update).toHaveBeenCalledWith(1, {
       id: 13,
@@ -140,6 +143,9 @@ describe('<InventoryEdit />', () => {
       name: 'Sushi',
       id: 1,
     });
+<<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
     expect(InventoriesAPI.orderInstanceGroups).toHaveBeenCalledWith(
       mockInventory.id,

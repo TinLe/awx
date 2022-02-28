@@ -36,13 +36,8 @@ function UserOrganizationList() {
         },
         actions,
       ] = await Promise.all([
-<<<<<<< HEAD:awx/ui/src/screens/User/UserOrganizations/UserOrganizationList.js
-        UsersAPI.readOrganizations(userId, params),
-        UsersAPI.readOrganizationOptions(),
-=======
         UsersAPI.readOrganizations(id, params),
         UsersAPI.readOrganizationOptions(id),
->>>>>>> upstream/devel:awx/ui_next/src/screens/User/UserOrganizations/UserOrganizationList.js
       ]);
       return {
         searchableKeys: Object.keys(actions.data.actions?.GET || {}).filter(

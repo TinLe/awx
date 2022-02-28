@@ -150,6 +150,7 @@ function AssociateModal({
           },
         ]}
 <<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
+<<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
       >
         <OptionsList
           displayKey={displayKey}
@@ -192,6 +193,8 @@ function AssociateModal({
       </Modal>
     </>
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
         sortColumns={[
           {
             name: t`Name`,
@@ -202,6 +205,9 @@ function AssociateModal({
         relatedSearchableKeys={relatedSearchableKeys}
       />
     </Modal>
+<<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
+>>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
   );
 }

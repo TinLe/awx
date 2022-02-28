@@ -46,7 +46,6 @@ RUN dnf -y update && dnf install -y 'dnf-command(config-manager)' && \
 RUN pip3 install virtualenv
 
 
-
 # Install & build requirements
 ADD Makefile /tmp/Makefile
 RUN mkdir /tmp/requirements
@@ -155,11 +154,7 @@ RUN dnf -y install \
     wget \
     diffutils \
     unzip && \
-<<<<<<< HEAD
-    npm install -g n && n 14.18.3 && npm install -g npm@7.24.2 && dnf remove -y nodejs
-=======
     npm install -g n && n 16.14.0 && npm install -g npm@8.5.0 && dnf remove -y nodejs
->>>>>>> upstream/devel
 
 RUN pip3 install black git+https://github.com/coderanger/supervisor-stdout
 
@@ -169,23 +164,6 @@ RUN pip3 install black git+https://github.com/coderanger/supervisor-stdout
 RUN dnf --enablerepo=baseos-debug -y install python3-debuginfo || :
 {% endif %}
 
-<<<<<<< HEAD
-{% if build_dev|bool %}
-RUN dnf install -y podman
-RUN echo -e '[engine]\ncgroup_manager = "cgroupfs"\nevents_logger = "file"\nruntime = "crun"' > /etc/containers/containers.conf
-{% endif %}
-
-# Fix overlay filesystem issue
-{% if build_dev|bool %}
-RUN sed -i '/^#mount_program/s/^#//' /etc/containers/storage.conf
-{% endif %}
-
-# Ensure we must use fully qualified image names
-# This prevents podman prompt that hangs when trying to pull unqualified images
-RUN mkdir -p /etc/containers/registries.conf.d/ && echo "unqualified-search-registries = []" >> /etc/containers/registries.conf.d/force-fully-qualified-images.conf && chmod 644 /etc/containers/registries.conf.d/force-fully-qualified-images.conf
-
-=======
->>>>>>> upstream/devel
 # Copy app from builder
 COPY --from=builder /var/lib/awx /var/lib/awx
 
@@ -193,10 +171,7 @@ RUN ln -s /var/lib/awx/venv/awx/bin/awx-manage /usr/bin/awx-manage
 
 {%if build_dev|bool %}
 COPY --from={{ receptor_image }} /usr/bin/receptor /usr/bin/receptor
-<<<<<<< HEAD
-=======
 
->>>>>>> upstream/devel
 RUN openssl req -nodes -newkey rsa:2048 -keyout /etc/nginx/nginx.key -out /etc/nginx/nginx.csr \
         -subj "/C=US/ST=North Carolina/L=Durham/O=Ansible/OU=AWX Development/CN=awx.localhost" && \
     openssl x509 -req -days 365 -in /etc/nginx/nginx.csr -signkey /etc/nginx/nginx.key -out /etc/nginx/nginx.crt && \
@@ -231,11 +206,8 @@ ADD tools/docker-compose/start_tests.sh /start_tests.sh
 ADD tools/docker-compose/bootstrap_development.sh /usr/bin/bootstrap_development.sh
 ADD tools/docker-compose/entrypoint.sh /entrypoint.sh
 ADD tools/scripts/config-watcher /usr/bin/config-watcher
-<<<<<<< HEAD
-=======
 ADD https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/containers.conf /etc/containers/containers.conf
 ADD https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/podman-containers.conf /var/lib/awx/.config/containers/containers.conf
->>>>>>> upstream/devel
 {% else %}
 ADD tools/ansible/roles/dockerfile/files/launch_awx.sh /usr/bin/launch_awx.sh
 ADD tools/ansible/roles/dockerfile/files/launch_awx_task.sh /usr/bin/launch_awx_task.sh

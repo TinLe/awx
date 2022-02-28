@@ -1,5 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
+=======
+/* eslint-disable react/jsx-no-useless-fragment */
+import React, { useState } from 'react';
+>>>>>>> upstream/devel
 =======
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
@@ -32,6 +37,10 @@ const EmptyStateControlsWrapper = styled.div`
 function ListHeader(props) {
   const { search, pathname } = useLocation();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  const [isFilterCleared, setIsFilterCleared] = useState(false);
+>>>>>>> upstream/devel
 =======
   const [isFilterCleared, setIsFilterCleared] = useState(false);
 >>>>>>> upstream/devel
@@ -82,6 +91,10 @@ function ListHeader(props) {
     delete oldParams.order_by;
     const qs = updateQueryString(qsConfig, search, oldParams);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    setIsFilterCleared(true);
+>>>>>>> upstream/devel
 =======
     setIsFilterCleared(true);
 >>>>>>> upstream/devel
@@ -133,6 +146,10 @@ function ListHeader(props) {
             qsConfig,
             pagination,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            isFilterCleared,
+>>>>>>> upstream/devel
 =======
             isFilterCleared,
 >>>>>>> upstream/devel

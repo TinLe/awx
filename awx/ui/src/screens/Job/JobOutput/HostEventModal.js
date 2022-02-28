@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { t } from '@lingui/macro';
 <<<<<<< HEAD:awx/ui/src/screens/Job/JobOutput/HostEventModal.js
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobOutput/HostEventModal.js
 import styled from 'styled-components';
 import { encode } from 'html-entities';
 import StatusIcon from '../../../components/StatusIcon';
@@ -18,11 +19,16 @@ const HostNameDetailValue = styled.div`
   grid-template-columns: auto auto;
 `;
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobOutput/HostEventModal.js
 import { encode } from 'html-entities';
 import StatusLabel from '../../../components/StatusLabel';
 import { DetailList, Detail } from '../../../components/DetailList';
 import ContentEmpty from '../../../components/ContentEmpty';
 import CodeEditor from '../../../components/CodeEditor';
+<<<<<<< HEAD:awx/ui/src/screens/Job/JobOutput/HostEventModal.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobOutput/HostEventModal.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Job/JobOutput/HostEventModal.js
 
 const processEventStatus = (event) => {

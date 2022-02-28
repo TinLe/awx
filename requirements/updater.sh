@@ -24,13 +24,9 @@ generate_requirements() {
   # consider the git requirements for purposes of resolving deps
   # Then remove any git+ lines from requirements.txt
   while IFS= read -r line; do
-<<<<<<< HEAD
-    sed -i "\!${line%#*}!d" requirements.txt
-=======
     if [[ $line != \#* ]]; then  # ignore comments
       sed -i "\!${line%#*}!d" requirements.txt
     fi
->>>>>>> upstream/devel
   done < "${requirements_git}"
 }
 

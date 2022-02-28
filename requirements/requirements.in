@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-aiohttp
-=======
 aiohttp>=3.7.4
->>>>>>> upstream/devel
 ansiconv==1.0.0  # UPGRADE BLOCKER: from 2013, consider replacing instead of upgrading
 asciichartpy
 autobahn>=20.12.3  # CVE-2020-35678
@@ -13,11 +9,7 @@ cryptography>=3.2
 Cython<3 # Since the bump to PyYAML 5.4.1 this is now a mandatory dep
 daphne
 distro
-<<<<<<< HEAD
-django==2.2.26  # see UPGRADE BLOCKERs
-=======
 django==2.2.24  # see UPGRADE BLOCKERs
->>>>>>> upstream/devel
 django-auth-ldap
 django-cors-headers>=3.5.0
 django-crum

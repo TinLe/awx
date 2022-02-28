@@ -17,6 +17,7 @@ import { FormColumnLayout } from 'components/FormLayout';
 
 function InstanceGroupFormFields({ defaultControlPlane, defaultExecution }) {
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/shared/InstanceGroupForm.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/shared/InstanceGroupForm.js
   const [{ value }, ,] = useField('name');
   const isDisabled =
     value === defaultExecution || value === defaultControlPlane;
@@ -46,6 +47,8 @@ function InstanceGroupFormFields({ defaultControlPlane, defaultExecution }) {
         />
       )}
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/shared/InstanceGroupForm.js
   const [, { initialValue }] = useField('name');
   const isProtected =
     initialValue === `${defaultControlPlane}` ||

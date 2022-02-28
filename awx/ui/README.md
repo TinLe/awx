@@ -1,11 +1,7 @@
 # AWX-UI
 
 ## Requirements
-<<<<<<< HEAD:awx/ui/README.md
-- node 14.x LTS, npm 7.x, make, git
-=======
 - node >= 16.14.0, npm >= 8.x make, git
->>>>>>> upstream/devel:awx/ui_next/README.md
 
 ## Development
 The API development server will need to be running. See [CONTRIBUTING.md](../../CONTRIBUTING.md).
