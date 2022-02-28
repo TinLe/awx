@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 MIT License
 
 <<<<<<< HEAD
@@ -27,6 +28,11 @@ Copyright (c) 2017 Alberto Leal <mailforalberto@gmail.com> (github.com/dashed)
 =======
 Copyright (c) Emotion team and other contributors
 >>>>>>> upstream/devel:docs/licenses/ui/emotion-stylis.txt
+>>>>>>> upstream/devel
+=======
+MIT License
+
+Copyright (c) Emotion team and other contributors
 >>>>>>> upstream/devel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

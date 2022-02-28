@@ -2,11 +2,15 @@
 MIT License
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:docs/licenses/ui/shallowequal.txt
 Copyright (c) 2017 Alberto Leal <mailforalberto@gmail.com> (github.com/dashed)
 =======
 Copyright (c) Emotion team and other contributors
 >>>>>>> upstream/devel:docs/licenses/ui/emotion-stylis.txt
+=======
+Copyright (c) 2017 Alberto Leal <mailforalberto@gmail.com> (github.com/dashed)
+>>>>>>> upstream/devel
 =======
 Copyright (c) 2017 Alberto Leal <mailforalberto@gmail.com> (github.com/dashed)
 >>>>>>> upstream/devel
