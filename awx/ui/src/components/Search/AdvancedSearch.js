@@ -16,6 +16,10 @@ import {
 } from '@patternfly/react-core';
 import { SearchIcon, QuestionCircleIcon } from '@patternfly/react-icons';
 import styled from 'styled-components';
+<<<<<<< HEAD
+=======
+import { useLocation } from 'react-router-dom';
+>>>>>>> upstream/devel
 import { useConfig } from 'contexts/Config';
 import getDocsBaseUrl from 'util/getDocsBaseUrl';
 import { SearchableKeys } from 'types';
@@ -42,17 +46,58 @@ function AdvancedSearch({
   maxSelectHeight,
   enableNegativeFiltering,
   enableRelatedFuzzyFiltering,
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected,
+  isFilterCleared,
+>>>>>>> upstream/devel
 }) {
   const relatedKeys = relatedSearchableKeys.filter(
     (sKey) => !searchableKeys.map(({ key }) => key).includes(sKey)
   );
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/devel
   const [isPrefixDropdownOpen, setIsPrefixDropdownOpen] = useState(false);
   const [isKeyDropdownOpen, setIsKeyDropdownOpen] = useState(false);
   const [prefixSelection, setPrefixSelection] = useState(null);
   const [lookupSelection, setLookupSelection] = useState(null);
   const [keySelection, setKeySelection] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+<<<<<<< HEAD
+=======
+  const [isTextInputDisabled, setIsTextInputDisabled] = useState(false);
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    if (keySelection === 'ansible_facts') {
+      handleIsAnsibleFactsSelected(true);
+      setPrefixSelection(null);
+    } else {
+      handleIsAnsibleFactsSelected(false);
+    }
+  }, [keySelection]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (isFilterCleared && keySelection === 'ansible_facts') {
+      setIsTextInputDisabled(false);
+    }
+  }, [isFilterCleared, keySelection]);
+
+  useEffect(() => {
+    if (
+      (pathname.includes('edit') || pathname.includes('add')) &&
+      keySelection === 'ansible_facts' &&
+      search.includes('ansible_facts')
+    ) {
+      setIsTextInputDisabled(true);
+    } else {
+      setIsTextInputDisabled(false);
+    }
+  }, [keySelection, pathname, search]);
+
+>>>>>>> upstream/devel
   const config = useConfig();
 
   const selectedKey = searchableKeys.find((k) => k.key === keySelection);
@@ -64,7 +109,11 @@ function AdvancedSearch({
     keySelection && !relatedSearchKeySelected ? selectedKey?.type : null;
 
   useEffect(() => {
+<<<<<<< HEAD
     if (relatedSearchKeySelected) {
+=======
+    if (relatedSearchKeySelected && keySelection !== 'ansible_facts') {
+>>>>>>> upstream/devel
       setLookupSelection('name__icontains');
     } else {
       setLookupSelection(null);
@@ -86,7 +135,16 @@ function AdvancedSearch({
       const actualSearchKey = [actualPrefix, keySelection, lookupSelection]
         .filter((val) => !!val)
         .join('__');
+<<<<<<< HEAD
       onSearch(actualSearchKey, searchValue);
+=======
+      if (keySelection === 'ansible_facts') {
+        const ansibleFactValue = `${actualSearchKey}__${searchValue}`;
+        onSearch('host_filter', ansibleFactValue);
+      } else {
+        onSearch(actualSearchKey, searchValue);
+      }
+>>>>>>> upstream/devel
       setSearchValue('');
     }
   };
@@ -137,6 +195,7 @@ function AdvancedSearch({
     </Select>
   );
 
+<<<<<<< HEAD
   return (
     <AdvancedGroup>
       {lookupSelection === 'search' ? (
@@ -148,6 +207,76 @@ function AdvancedSearch({
       ) : (
         renderSetType()
       )}
+=======
+  const renderLookupType = () => {
+    if (keySelection === 'ansible_facts') return null;
+
+    return relatedSearchKeySelected ? (
+      <RelatedLookupTypeInput
+        value={lookupSelection}
+        setValue={setLookupSelection}
+        maxSelectHeight={maxSelectHeight}
+        enableFuzzyFiltering={enableRelatedFuzzyFiltering}
+      />
+    ) : (
+      <LookupTypeInput
+        value={lookupSelection}
+        type={lookupKeyType}
+        setValue={setLookupSelection}
+        maxSelectHeight={maxSelectHeight}
+      />
+    );
+  };
+
+  const renderTextInput = () => {
+    if (isTextInputDisabled) {
+      return (
+        <Tooltip
+          content={t`Remove the current search related to ansible facts to enable another search using this key.`}
+        >
+          <TextInput
+            data-cy="advanced-search-text-input"
+            type="search"
+            aria-label={t`Advanced search value input`}
+            isDisabled={!keySelection || isTextInputDisabled}
+            value={(!keySelection && t`First, select a key`) || searchValue}
+            onChange={setSearchValue}
+            onKeyDown={handleAdvancedTextKeyDown}
+          />
+        </Tooltip>
+      );
+    }
+
+    return (
+      <TextInput
+        data-cy="advanced-search-text-input"
+        type="search"
+        aria-label={t`Advanced search value input`}
+        isDisabled={!keySelection}
+        value={(!keySelection && t`First, select a key`) || searchValue}
+        onChange={setSearchValue}
+        onKeyDown={handleAdvancedTextKeyDown}
+      />
+    );
+  };
+
+  const renderLookupSelection = () => {
+    if (keySelection === 'ansible_facts') return null;
+    return lookupSelection === 'search' ? (
+      <Tooltip
+        content={t`Set type disabled for related search field fuzzy searches`}
+      >
+        {renderSetType()}
+      </Tooltip>
+    ) : (
+      renderSetType()
+    );
+  };
+
+  return (
+    <AdvancedGroup>
+      {renderLookupSelection()}
+>>>>>>> upstream/devel
       <Select
         ouiaId="set-key-typeahead"
         aria-label={t`Key select`}
@@ -200,6 +329,7 @@ function AdvancedSearch({
             : []),
         ]}
       </Select>
+<<<<<<< HEAD
       {relatedSearchKeySelected ? (
         <RelatedLookupTypeInput
           value={lookupSelection}
@@ -225,6 +355,12 @@ function AdvancedSearch({
           onChange={setSearchValue}
           onKeyDown={handleAdvancedTextKeyDown}
         />
+=======
+      {renderLookupType()}
+
+      <InputGroup>
+        {renderTextInput()}
+>>>>>>> upstream/devel
         <div css={!searchValue && `cursor:not-allowed`}>
           <Button
             ouiaId="advanced-search-text-input"
@@ -259,6 +395,10 @@ AdvancedSearch.propTypes = {
   maxSelectHeight: string,
   enableNegativeFiltering: bool,
   enableRelatedFuzzyFiltering: bool,
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: func,
+>>>>>>> upstream/devel
 };
 
 AdvancedSearch.defaultProps = {
@@ -267,6 +407,10 @@ AdvancedSearch.defaultProps = {
   maxSelectHeight: '300px',
   enableNegativeFiltering: true,
   enableRelatedFuzzyFiltering: true,
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: () => {},
+>>>>>>> upstream/devel
 };
 
 export default AdvancedSearch;

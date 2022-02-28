@@ -82,8 +82,10 @@ class Instance(HasPolicyEditsMixin, BaseModel):
     modified = models.DateTimeField(auto_now=True)
     # Fields defined in health check or heartbeat
     version = models.CharField(max_length=120, blank=True)
-    cpu = models.IntegerField(
-        default=0,
+    cpu = models.DecimalField(
+        default=Decimal(0.0),
+        max_digits=4,
+        decimal_places=1,
         editable=False,
     )
     memory = models.BigIntegerField(
@@ -145,7 +147,14 @@ class Instance(HasPolicyEditsMixin, BaseModel):
 
     @property
     def consumed_capacity(self):
-        return sum(x.task_impact for x in UnifiedJob.objects.filter(execution_node=self.hostname, status__in=('running', 'waiting')))
+        capacity_consumed = 0
+        if self.node_type in ('hybrid', 'execution'):
+            capacity_consumed += sum(x.task_impact for x in UnifiedJob.objects.filter(execution_node=self.hostname, status__in=('running', 'waiting')))
+        if self.node_type in ('hybrid', 'control'):
+            capacity_consumed += sum(
+                settings.AWX_CONTROL_NODE_TASK_IMPACT for x in UnifiedJob.objects.filter(controller_node=self.hostname, status__in=('running', 'waiting'))
+            )
+        return capacity_consumed
 
     @property
     def remaining_capacity(self):
@@ -195,7 +204,7 @@ class Instance(HasPolicyEditsMixin, BaseModel):
         if ref_time is None:
             ref_time = now()
         grace_period = settings.CLUSTER_NODE_HEARTBEAT_PERIOD * 2
-        if self.node_type == 'execution':
+        if self.node_type in ('execution', 'hop'):
             grace_period += settings.RECEPTOR_SERVICE_ADVERTISEMENT_PERIOD
         return self.last_seen < ref_time - timedelta(seconds=grace_period)
 
@@ -263,7 +272,11 @@ class Instance(HasPolicyEditsMixin, BaseModel):
             self.mark_offline(perform_save=False, errors=errors)
         update_fields.extend(['cpu_capacity', 'mem_capacity', 'capacity', 'errors'])
 
-        self.save(update_fields=update_fields)
+        # disabling activity stream will avoid extra queries, which is important for heatbeat actions
+        from awx.main.signals import disable_activity_stream
+
+        with disable_activity_stream():
+            self.save(update_fields=update_fields)
 
     def local_health_check(self):
         """Only call this method on the instance that this record represents"""
@@ -341,15 +354,21 @@ class InstanceGroup(HasPolicyEditsMixin, BaseModel, RelatedJobsMixin):
         app_label = 'main'
 
     @staticmethod
-    def fit_task_to_most_remaining_capacity_instance(task, instances):
+    def fit_task_to_most_remaining_capacity_instance(task, instances, impact=None, capacity_type=None, add_hybrid_control_cost=False):
+        impact = impact if impact else task.task_impact
+        capacity_type = capacity_type if capacity_type else task.capacity_type
         instance_most_capacity = None
+        most_remaining_capacity = -1
         for i in instances:
-            if i.node_type not in (task.capacity_type, 'hybrid'):
+            if i.node_type not in (capacity_type, 'hybrid'):
                 continue
-            if i.remaining_capacity >= task.task_impact and (
-                instance_most_capacity is None or i.remaining_capacity > instance_most_capacity.remaining_capacity
-            ):
+            would_be_remaining = i.remaining_capacity - impact
+            # hybrid nodes _always_ control their own tasks
+            if add_hybrid_control_cost and i.node_type == 'hybrid':
+                would_be_remaining -= settings.AWX_CONTROL_NODE_TASK_IMPACT
+            if would_be_remaining >= 0 and (instance_most_capacity is None or would_be_remaining > most_remaining_capacity):
                 instance_most_capacity = i
+                most_remaining_capacity = would_be_remaining
         return instance_most_capacity
 
     @staticmethod

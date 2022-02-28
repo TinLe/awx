@@ -44,6 +44,8 @@ function Search({
   maxSelectHeight,
   enableNegativeFiltering,
   enableRelatedFuzzyFiltering,
+  handleIsAnsibleFactsSelected,
+  isFilterCleared,
 }) {
   const location = useLocation();
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
@@ -96,11 +98,22 @@ function Search({
     }
   };
 
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
   const chipsByKey = getChipsByKey(
     parseQueryString(qsConfig, location.search),
     columns,
     qsConfig
   );
+=======
+  const params = parseQueryString(qsConfig, location.search);
+  if (params?.host_filter) {
+    params.ansible_facts = params.host_filter.substring(
+      'ansible_facts__'.length
+    );
+    delete params.host_filter;
+  }
+  const chipsByKey = getChipsByKey(params, columns, qsConfig);
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
 
   const { name: searchColumnName } = columns.find(
     ({ key }) => key === searchKey
@@ -161,9 +174,12 @@ function Search({
               maxSelectHeight={maxSelectHeight}
               enableNegativeFiltering={enableNegativeFiltering}
               enableRelatedFuzzyFiltering={enableRelatedFuzzyFiltering}
+              handleIsAnsibleFactsSelected={handleIsAnsibleFactsSelected}
+              isFilterCleared={isFilterCleared}
             />
           )) ||
             (options && (
+<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
               <>
                 <Select
                   variant={SelectVariant.checkbox}
@@ -195,6 +211,37 @@ function Search({
                   ))}
                 </Select>
               </>
+=======
+              <Select
+                variant={SelectVariant.checkbox}
+                aria-label={name}
+                typeAheadAriaLabel={name}
+                onToggle={setIsFilterDropdownOpen}
+                onSelect={(event, selection) =>
+                  handleFilterDropdownSelect(key, event, selection)
+                }
+                selections={chipsByKey[key].chips.map((chip) => {
+                  const [, ...value] = chip.key.split(':');
+                  return value.join(':');
+                })}
+                isOpen={isFilterDropdownOpen}
+                placeholderText={t`Filter By ${name}`}
+                ouiaId={`filter-by-${key}`}
+                isDisabled={isDisabled}
+                maxHeight={maxSelectHeight}
+                noResultsFoundText={t`No results found`}
+              >
+                {options.map(([optionKey, optionLabel]) => (
+                  <SelectOption
+                    key={optionKey}
+                    value={optionKey}
+                    inputId={`select-option-${optionKey}`}
+                  >
+                    {optionLabel}
+                  </SelectOption>
+                ))}
+              </Select>
+>>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
             )) ||
             (isBoolean && (
               <Select
@@ -260,7 +307,11 @@ function Search({
             chips={chipsByKey[leftoverKey] ? chipsByKey[leftoverKey].chips : []}
             deleteChip={(unusedKey, chip) => {
               const [columnKey, ...value] = chip.key.split(':');
-              onRemove(columnKey, value.join(':'));
+              if (columnKey === 'ansible_facts') {
+                onRemove('host_filter', `${columnKey}__${value}`);
+              } else {
+                onRemove(columnKey, value.join(':'));
+              }
             }}
             categoryName={
               chipsByKey[leftoverKey]

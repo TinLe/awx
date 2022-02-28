@@ -9,7 +9,11 @@ import ContentError from 'components/ContentError';
 import ContentLoading from 'components/ContentLoading';
 import ContainerGroupForm from '../shared/ContainerGroupForm';
 
-function ContainerGroupEdit({ instanceGroup }) {
+function ContainerGroupEdit({
+  instanceGroup,
+  defaultControlPlane,
+  defaultExecution,
+}) {
   const history = useHistory();
   const [submitError, setSubmitError] = useState(null);
   const detailsIUrl = `/instance_groups/container_group/${instanceGroup.id}/details`;
@@ -64,19 +68,17 @@ function ContainerGroupEdit({ instanceGroup }) {
 
   if (isLoading) {
     return (
-      <PageSection>
-        <Card>
-          <CardBody>
-            <ContentLoading />
-          </CardBody>
-        </Card>
-      </PageSection>
+      <CardBody>
+        <ContentLoading />
+      </CardBody>
     );
   }
 
   return (
     <CardBody>
       <ContainerGroupForm
+        defaultControlPlane={defaultControlPlane}
+        defaultExecution={defaultExecution}
         instanceGroup={instanceGroup}
         initialPodSpec={initialPodSpec}
         onSubmit={handleSubmit}

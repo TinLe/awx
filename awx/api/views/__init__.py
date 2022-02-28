@@ -157,6 +157,7 @@ from awx.api.views.inventory import (  # noqa
     InventoryAccessList,
     InventoryObjectRolesList,
     InventoryJobTemplateList,
+    InventoryLabelList,
     InventoryCopy,
 )
 from awx.api.views.mesh_visualizer import MeshVisualizer  # noqa
@@ -418,9 +419,13 @@ class InstanceInstanceGroupsList(InstanceGroupMembershipMixin, SubListCreateAtta
 class InstanceHealthCheck(GenericAPIView):
 
     name = _('Instance Health Check')
-    queryset = models.Instance.objects.exclude(node_type='hop')
+    model = models.Instance
     serializer_class = serializers.InstanceHealthCheckSerializer
     permission_classes = (IsSystemAdminOrAuditor,)
+
+    def get_queryset(self):
+        # FIXME: For now, we don't have a good way of checking the health of a hop node.
+        return super().get_queryset().exclude(node_type='hop')
 
     def get(self, request, *args, **kwargs):
         obj = self.get_object()

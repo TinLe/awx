@@ -4,6 +4,7 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useMemo,
 } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { DateTime } from 'luxon';
@@ -163,11 +164,38 @@ function SessionProvider({ children }) {
     clearInterval(sessionIntervalId.current);
   }, []);
 
+<<<<<<< HEAD:awx/ui/src/contexts/Session.js
+=======
+  const sessionValue = useMemo(
+    () => ({
+      isUserBeingLoggedOut,
+      loginRedirectOverride,
+      authRedirectTo,
+      handleSessionContinue,
+      isSessionExpired,
+      logout,
+      sessionCountdown,
+      setAuthRedirectTo,
+    }),
+    [
+      isUserBeingLoggedOut,
+      loginRedirectOverride,
+      authRedirectTo,
+      handleSessionContinue,
+      isSessionExpired,
+      logout,
+      sessionCountdown,
+      setAuthRedirectTo,
+    ]
+  );
+
+>>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
   if (isLoading) {
     return null;
   }
 
   return (
+<<<<<<< HEAD:awx/ui/src/contexts/Session.js
     <SessionContext.Provider
       value={{
         isUserBeingLoggedOut,
@@ -180,6 +208,9 @@ function SessionProvider({ children }) {
         setAuthRedirectTo,
       }}
     >
+=======
+    <SessionContext.Provider value={sessionValue}>
+>>>>>>> upstream/devel:awx/ui_next/src/contexts/Session.js
       {children}
     </SessionContext.Provider>
   );

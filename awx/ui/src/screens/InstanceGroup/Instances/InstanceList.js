@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
 
 import { Plural, t } from '@lingui/macro';
+=======
+import { t } from '@lingui/macro';
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
 import { useLocation, useParams } from 'react-router-dom';
 import 'styled-components/macro';
 
@@ -16,7 +20,6 @@ import DisassociateButton from 'components/DisassociateButton';
 import AssociateModal from 'components/AssociateModal';
 import AlertModal from 'components/AlertModal';
 import ErrorDetail from 'components/ErrorDetail';
-
 import useRequest, {
   useDeleteItems,
   useDismissableError,
@@ -24,8 +27,12 @@ import useRequest, {
 import useSelected from 'hooks/useSelected';
 import { InstanceGroupsAPI, InstancesAPI } from 'api';
 import { getQSConfig, parseQueryString, mergeParams } from 'util/qs';
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
 
 import { Button, Tooltip } from '@patternfly/react-core';
+=======
+import HealthCheckButton from 'components/HealthCheckButton/HealthCheckButton';
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
 import InstanceListItem from './InstanceListItem';
 
 const QS_CONFIG = getQSConfig('instance', {
@@ -91,6 +98,22 @@ function InstanceList() {
   );
 
   const {
+    error: healthCheckError,
+    request: fetchHealthCheck,
+    isLoading: isHealthCheckLoading,
+  } = useRequest(
+    useCallback(async () => {
+      await Promise.all(selected.map(({ id }) => InstancesAPI.healthCheck(id)));
+      fetchInstances();
+    }, [selected, fetchInstances])
+  );
+
+  const handleHealthCheck = async () => {
+    await fetchHealthCheck();
+    clearSelected();
+  };
+
+  const {
     isLoading: isDisassociateLoading,
     deleteItems: disassociateInstances,
     deletionError: disassociateError,
@@ -121,7 +144,11 @@ function InstanceList() {
       async (instancesToAssociate) => {
         await Promise.all(
           instancesToAssociate
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
             .filter((i) => i.node_type !== 'control')
+=======
+            .filter((i) => i.node_type !== 'control' || i.node_type !== 'hop')
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             .map((instance) =>
               InstanceGroupsAPI.associateInstance(instanceGroupId, instance.id)
             )
@@ -149,7 +176,11 @@ function InstanceList() {
       InstancesAPI.read(
         mergeParams(params, {
           ...{ not__rampart_groups__id: instanceGroupId },
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
           ...{ not__node_type: 'control' },
+=======
+          ...{ not__node_type: ['hop', 'control'] },
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
         })
       ),
     [instanceGroupId]
@@ -167,7 +198,9 @@ function InstanceList() {
     <>
       <PaginatedTable
         contentError={contentError}
-        hasContentLoading={isLoading || isDisassociateLoading}
+        hasContentLoading={
+          isLoading || isDisassociateLoading || isHealthCheckLoading
+        }
         items={instances}
         itemCount={count}
         pluralizedItemName={t`Instances`}
@@ -180,6 +213,15 @@ function InstanceList() {
             name: t`Name`,
             key: 'hostname__icontains',
             isDefault: true,
+          },
+          {
+            name: t`Node Type`,
+            key: `or__node_type`,
+            options: [
+              [`control`, t`Control`],
+              [`execution`, t`Execution`],
+              [`hybrid`, t`Hybrid`],
+            ],
           },
         ]}
         toolbarSortColumns={[
@@ -215,6 +257,7 @@ function InstanceList() {
                 itemsToDisassociate={selected}
                 modalTitle={t`Disassociate instance from instance group?`}
               />,
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
               <Tooltip
                 content={
                   selected.length ? (
@@ -237,6 +280,13 @@ function InstanceList() {
                   >{t`Health Check`}</Button>
                 </div>
               </Tooltip>,
+=======
+              <HealthCheckButton
+                isDisabled={!canAdd}
+                onClick={handleHealthCheck}
+                selectedItems={selected}
+              />,
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             ]}
             emptyStateControls={
               canAdd ? (
@@ -252,8 +302,12 @@ function InstanceList() {
           <HeaderRow qsConfig={QS_CONFIG} isExpandable>
             <HeaderCell sortKey="hostname">{t`Name`}</HeaderCell>
             <HeaderCell sortKey="errors">{t`Status`}</HeaderCell>
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
             <HeaderCell>{t`Running Jobs`}</HeaderCell>
             <HeaderCell>{t`Total Jobs`}</HeaderCell>
+=======
+            <HeaderCell sortKey="node_type">{t`Node Type`}</HeaderCell>
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             <HeaderCell>{t`Capacity Adjustment`}</HeaderCell>
             <HeaderCell>{t`Used Capacity`}</HeaderCell>
             <HeaderCell>{t`Actions`}</HeaderCell>

@@ -167,6 +167,10 @@ describe('useJobEvents', () => {
       uuidMap: {},
       eventsWithoutParents: {},
       eventGaps: [],
+<<<<<<< HEAD
+=======
+      isAllCollapsed: false,
+>>>>>>> upstream/devel
     };
   });
 

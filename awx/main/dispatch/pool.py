@@ -22,6 +22,7 @@ import psutil
 
 from awx.main.models import UnifiedJob
 from awx.main.dispatch import reaper
+from awx.main.utils.common import convert_mem_str_to_bytes, get_mem_effective_capacity
 
 if 'run_callback_receiver' in sys.argv:
     logger = logging.getLogger('awx.main.commands.run_callback_receiver')
@@ -319,11 +320,13 @@ class AutoscalePool(WorkerPool):
         if self.max_workers is None:
             settings_absmem = getattr(settings, 'SYSTEM_TASK_ABS_MEM', None)
             if settings_absmem is not None:
-                total_memory_gb = int(settings_absmem)
+                # There are 1073741824 bytes in a gigabyte. Convert bytes to gigabytes by dividing by 2**30
+                total_memory_gb = convert_mem_str_to_bytes(settings_absmem) // 2**30
             else:
                 total_memory_gb = (psutil.virtual_memory().total >> 30) + 1  # noqa: round up
-            # 5 workers per GB of total memory
-            self.max_workers = total_memory_gb * 5
+
+            # Get same number as max forks based on memory, this function takes memory as bytes
+            self.max_workers = get_mem_effective_capacity(total_memory_gb * 2**30)
 
         # max workers can't be less than min_workers
         self.max_workers = max(self.min_workers, self.max_workers)

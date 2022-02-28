@@ -1,9 +1,17 @@
 adal==1.2.2
     # via msrestazure
+<<<<<<< HEAD
 aiohttp==3.6.2
     # via -r requirements.in
 aioredis==1.3.1
     # via channels-redis
+=======
+aiohttp==3.7.4
+    # via -r /awx_devel/requirements/requirements.in
+aioredis==1.3.1
+    # via channels-redis
+    # via -r /awx_devel/requirements/requirements_git.txt
+>>>>>>> upstream/devel
 ansiconv==1.0.0
     # via -r requirements.in
 asciichartpy==1.5.25
@@ -52,14 +60,14 @@ channels==2.4.0
 channels-redis==3.1.0
     # via -r requirements.in
 chardet==3.0.4
-    # via
-    #   aiohttp
-    #   requests
+    # via aiohttp
+charset-normalizer==2.0.7
+    # via requests
 click==7.1.2
     # via receptorctl
 constantly==15.1.0
     # via twisted
-cryptography==2.9.2
+cryptography==3.2
     # via
     #   -r requirements.in
     #   adal
@@ -84,8 +92,13 @@ defusedxml==0.6.0
 dictdiffer==0.8.1
     # via openshift
 distro==1.5.0
+<<<<<<< HEAD
     # via -r requirements.in
 django==2.2.26
+=======
+    # via -r /awx_devel/requirements/requirements.in
+django==2.2.24
+>>>>>>> upstream/devel
     # via
     #   -r requirements.in
     #   channels
@@ -137,8 +150,13 @@ future==0.16.0
 gitdb==4.0.2
     # via gitpython
 gitpython==3.1.7
+<<<<<<< HEAD
     # via -r requirements.in
 google-auth==1.11.3
+=======
+    # via -r /awx_devel/requirements/requirements.in
+google-auth==1.35.0
+>>>>>>> upstream/devel
     # via kubernetes
 hiredis==1.0.1
     # via aioredis
@@ -187,7 +205,13 @@ jsonschema==3.2.0
     # via -r requirements.in
 kubernetes==11.0.0
     # via openshift
+<<<<<<< HEAD
 lxml==4.5.0
+=======
+lockfile==0.12.2
+    # via python-daemon
+lxml==4.6.3
+>>>>>>> upstream/devel
     # via xmlsec
 markdown==3.2.1
     # via -r requirements.in
@@ -218,9 +242,15 @@ oauthlib==3.1.0
     #   requests-oauthlib
     #   social-auth-core
 openshift==0.11.0
+<<<<<<< HEAD
     # via -r requirements.in
 pbr==5.6.0
     # via -r requirements.in
+=======
+    # via -r /awx_devel/requirements/requirements.in
+pbr==5.6.0
+    # via -r /awx_devel/requirements/requirements.in
+>>>>>>> upstream/devel
 pexpect==4.7.0
     # via -r requirements.in
 pkgconfig==1.5.1
@@ -277,7 +307,11 @@ python-ldap==3.4.0
 python-string-utils==1.0.0
     # via openshift
 python-tss-sdk==1.0.0
+<<<<<<< HEAD
     # via -r requirements.in
+=======
+    # via -r /awx_devel/requirements/requirements.in
+>>>>>>> upstream/devel
 python3-openid==3.1.0
     # via social-auth-core
 python3-saml==1.9.0
@@ -295,12 +329,16 @@ pyyaml==5.4.1
     #   kubernetes
     #   receptorctl
 receptorctl==1.1.1
+<<<<<<< HEAD
     # via -r requirements.in
+=======
+    # via -r /awx_devel/requirements/requirements.in
+>>>>>>> upstream/devel
 redis==3.4.1
     # via
     #   -r requirements.in
     #   django-redis
-requests==2.23.0
+requests==2.26.0
     # via
     #   -r requirements.in
     #   adal
@@ -318,7 +356,7 @@ requests-oauthlib==1.3.0
     #   kubernetes
     #   msrest
     #   social-auth-core
-rsa==4.0
+rsa==4.7.2
     # via google-auth
 ruamel.yaml==0.16.10
     # via openshift
@@ -351,7 +389,11 @@ six==1.14.0
     #   twilio
     #   websocket-client
 slack-sdk==3.11.2
+<<<<<<< HEAD
     # via -r requirements.in
+=======
+    # via -r /awx_devel/requirements/requirements.in
+>>>>>>> upstream/devel
 smmap==3.0.1
     # via gitdb
 social-auth-app-django==3.1.0
@@ -376,7 +418,9 @@ twisted[tls]==20.3.0
     #   daphne
 txaio==20.12.1
     # via autobahn
-urllib3==1.25.8
+typing-extensions==3.10.0.2
+    # via aiohttp
+urllib3==1.26.5
     # via
     #   kubernetes
     #   requests
@@ -397,7 +441,11 @@ zope.interface==5.0.0
 
 # The following packages are considered to be unsafe in a requirements file:
 pip==21.2.4
+<<<<<<< HEAD
     # via -r requirements.in
+=======
+    # via -r /awx_devel/requirements/requirements.in
+>>>>>>> upstream/devel
 setuptools==58.2.0
     # via
     #   -r requirements.in

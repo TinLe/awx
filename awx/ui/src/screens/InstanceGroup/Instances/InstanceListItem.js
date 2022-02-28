@@ -19,6 +19,7 @@ import StatusLabel from 'components/StatusLabel';
 import { Instance } from 'types';
 import useRequest, { useDismissableError } from 'hooks/useRequest';
 import useDebounce from 'hooks/useDebounce';
+import computeForks from 'util/computeForks';
 import { InstancesAPI } from 'api';
 import { useConfig } from 'contexts/Config';
 import AlertModal from 'components/AlertModal';
@@ -42,15 +43,6 @@ const SliderForks = styled.div`
   text-align: center;
 `;
 
-function computeForks(memCapacity, cpuCapacity, selectedCapacityAdjustment) {
-  const minCapacity = Math.min(memCapacity, cpuCapacity);
-  const maxCapacity = Math.max(memCapacity, cpuCapacity);
-
-  return Math.floor(
-    minCapacity + (maxCapacity - minCapacity) * selectedCapacityAdjustment
-  );
-}
-
 function InstanceListItem({
   instance,
   isExpanded,
@@ -61,6 +53,7 @@ function InstanceListItem({
   rowIndex,
 }) {
   const { me = {} } = useConfig();
+  const { id } = useParams();
   const [forks, setForks] = useState(
     computeForks(
       instance.mem_capacity,
@@ -68,7 +61,10 @@ function InstanceListItem({
       instance.capacity_adjustment
     )
   );
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
   const { id } = useParams();
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 
   const labelId = `check-action-${instance.id}`;
 
@@ -147,8 +143,7 @@ function InstanceListItem({
             <StatusLabel status={instance.errors ? 'error' : 'healthy'} />
           </Tooltip>
         </Td>
-        <Td dataLabel={t`Running Jobs`}>{instance.jobs_running}</Td>
-        <Td dataLabel={t`Total Jobs`}>{instance.jobs_total}</Td>
+        <Td dataLabel={t`Node Type`}>{instance.node_type}</Td>
         <Td dataLabel={t`Capacity Adjustment`}>
           <SliderHolder data-cy="slider-holder">
             <div data-cy="cpu-capacity">{t`CPU ${instance.cpu_capacity}`}</div>
@@ -197,12 +192,31 @@ function InstanceListItem({
         <Td colSpan={7}>
           <ExpandableRowContent>
             <DetailList>
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
               <Detail label={t`Node Type`} value={instance.node_type} />
               <Detail
+=======
+              <Detail
+                data-cy="running-jobs"
+                value={instance.jobs_running}
+                label={t`Running Jobs`}
+              />
+              <Detail
+                data-cy="total-jobs"
+                value={instance.jobs_total}
+                label={t`Total Jobs`}
+              />
+              <Detail
+                data-cy="policy-type"
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
                 label={t`Policy Type`}
                 value={instance.managed_by_policy ? t`Auto` : t`Manual`}
               />
               <Detail
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+=======
+                data-cy="last-health-check"
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
                 label={t`Last Health Check`}
                 value={formatDateString(instance.last_health_check)}
               />

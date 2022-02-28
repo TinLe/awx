@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/* eslint-disable react/jsx-no-useless-fragment */
+>>>>>>> upstream/devel
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { t } from '@lingui/macro';
@@ -16,7 +20,11 @@ import { CardBody as _CardBody } from 'components/Card';
 import ContentError from 'components/ContentError';
 import ContentLoading from 'components/ContentLoading';
 import ErrorDetail from 'components/ErrorDetail';
+<<<<<<< HEAD
 import StatusIcon from 'components/StatusIcon';
+=======
+import StatusLabel from 'components/StatusLabel';
+>>>>>>> upstream/devel
 import { JobEventsAPI } from 'api';
 
 import { getJobModel, isJobRunning } from 'util/jobs';
@@ -51,7 +59,11 @@ const HeaderTitle = styled.div`
   display: inline-flex;
   align-items: center;
   h1 {
+<<<<<<< HEAD
     margin-left: 10px;
+=======
+    margin-right: 10px;
+>>>>>>> upstream/devel
     font-weight: var(--pf-global--FontWeight--bold);
   }
 `;
@@ -168,12 +180,20 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
   const {
     addEvents,
     toggleNodeIsCollapsed,
+<<<<<<< HEAD
+=======
+    toggleCollapseAll,
+>>>>>>> upstream/devel
     getEventForRow,
     getNumCollapsedEvents,
     getCounterForRow,
     getEvent,
     clearLoadedEvents,
     rebuildEventsTree,
+<<<<<<< HEAD
+=======
+    isAllCollapsed,
+>>>>>>> upstream/devel
   } = useJobEvents(
     {
       fetchEventByUuid,
@@ -238,7 +258,11 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
           setWsEvents([]);
           scrollToRow(lastScrollPosition);
         });
+<<<<<<< HEAD
       }, 250);
+=======
+      }, 500);
+>>>>>>> upstream/devel
       return;
     }
     let batchTimeout;
@@ -276,7 +300,11 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
         batchedEvents = [];
       };
 
+<<<<<<< HEAD
       if (data.group_name === 'job_events') {
+=======
+      if (data.group_name === `${job.type}_events`) {
+>>>>>>> upstream/devel
         batchedEvents.push(data);
         clearTimeout(batchTimeout);
         if (batchedEvents.length >= 25) {
@@ -504,7 +532,11 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
               isCollapsed={node.isCollapsed}
               hasChildren={node.children.length}
               onToggleCollapsed={() => {
+<<<<<<< HEAD
                 toggleNodeIsCollapsed(event.uuid);
+=======
+                toggleNodeIsCollapsed(event.uuid, !node.isCollapsed);
+>>>>>>> upstream/devel
               }}
             />
           ) : (
@@ -653,6 +685,13 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
     scrollHeight.current = e.scrollHeight;
   };
 
+<<<<<<< HEAD
+=======
+  const handleExpandCollapseAll = () => {
+    toggleCollapseAll(!isAllCollapsed);
+  };
+
+>>>>>>> upstream/devel
   if (contentError) {
     return <ContentError error={contentError} />;
   }
@@ -669,8 +708,13 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
         )}
         <OutputHeader>
           <HeaderTitle>
+<<<<<<< HEAD
             <StatusIcon status={job.status} />
             <h1>{job.name}</h1>
+=======
+            <h1>{job.name}</h1>
+            <StatusLabel status={job.status} />
+>>>>>>> upstream/devel
           </HeaderTitle>
           <OutputToolbar
             job={job}
@@ -696,6 +740,13 @@ function JobOutput({ job, eventRelatedSearchableKeys, eventSearchableKeys }) {
           onScrollLast={handleScrollLast}
           onScrollNext={handleScrollNext}
           onScrollPrevious={handleScrollPrevious}
+<<<<<<< HEAD
+=======
+          toggleExpandCollapseAll={handleExpandCollapseAll}
+          isFlatMode={isFlatMode}
+          isTemplateJob={job.type === 'job'}
+          isAllCollapsed={isAllCollapsed}
+>>>>>>> upstream/devel
         />
         <OutputWrapper cssMap={cssMap}>
           <InfiniteLoader

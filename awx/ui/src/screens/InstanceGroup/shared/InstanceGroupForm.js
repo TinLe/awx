@@ -7,10 +7,16 @@ import { Form, Tooltip } from '@patternfly/react-core';
 
 import FormField, { FormSubmitError } from 'components/FormField';
 import FormActionGroup from 'components/FormActionGroup';
-import { required, minMaxValue } from 'util/validators';
+import {
+  combine,
+  required,
+  protectedResourceName,
+  minMaxValue,
+} from 'util/validators';
 import { FormColumnLayout } from 'components/FormLayout';
 
 function InstanceGroupFormFields({ defaultControlPlane, defaultExecution }) {
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/shared/InstanceGroupForm.js
   const [{ value }, ,] = useField('name');
   const isDisabled =
     value === defaultExecution || value === defaultControlPlane;
@@ -39,6 +45,37 @@ function InstanceGroupFormFields({ defaultControlPlane, defaultExecution }) {
           isRequired
         />
       )}
+=======
+  const [, { initialValue }] = useField('name');
+  const isProtected =
+    initialValue === `${defaultControlPlane}` ||
+    initialValue === `${defaultExecution}`;
+
+  const validators = combine([
+    required(null),
+    protectedResourceName(
+      t`This is a protected name for Instance Groups. Please use a different name.`,
+      [defaultControlPlane, defaultExecution]
+    ),
+  ]);
+
+  return (
+    <>
+      <FormField
+        name="name"
+        helperText={
+          isProtected
+            ? t`This is a protected Instance Group. The name cannot be changed.`
+            : ''
+        }
+        id="instance-group-name"
+        label={t`Name`}
+        type="text"
+        validate={validators}
+        isRequired
+        isDisabled={isProtected}
+      />
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/shared/InstanceGroupForm.js
       <FormField
         id="instance-group-policy-instance-minimum"
         label={t`Policy instance minimum`}
@@ -66,7 +103,6 @@ function InstanceGroupFormFields({ defaultControlPlane, defaultExecution }) {
 
 function InstanceGroupForm({
   instanceGroup = {},
-
   onSubmit,
   onCancel,
   submitError,

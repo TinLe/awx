@@ -73,6 +73,9 @@ AWX_CONTAINER_GROUP_DEFAULT_NAMESPACE = os.getenv('MY_POD_NAMESPACE', 'default')
 # Timeout when waiting for pod to enter running state. If the pod is still in pending state , it will be terminated. Valid time units are "s", "m", "h". Example : "5m" , "10s".
 AWX_CONTAINER_GROUP_POD_PENDING_TIMEOUT = "2h"
 
+# How much capacity controlling a task costs a hybrid or control node
+AWX_CONTROL_NODE_TASK_IMPACT = 1
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 #
@@ -162,7 +165,7 @@ ALLOWED_HOSTS = []
 # reverse proxy.
 REMOTE_HOST_HEADERS = ['REMOTE_ADDR', 'REMOTE_HOST']
 
-# If we is behind a reverse proxy/load balancer, use this setting to
+# If we are behind a reverse proxy/load balancer, use this setting to
 # allow the proxy IP addresses from which Tower should trust custom
 # REMOTE_HOST_HEADERS header values
 # REMOTE_HOST_HEADERS = ['HTTP_X_FORWARDED_FOR', ''REMOTE_ADDR', 'REMOTE_HOST']
@@ -248,6 +251,10 @@ SESSION_COOKIE_SECURE = True
 # Seconds before sessions expire.
 # Note: This setting may be overridden by database settings.
 SESSION_COOKIE_AGE = 1800
+
+# Name of the cookie that contains the session information.
+# Note: Changing this value may require changes to any clients.
+SESSION_COOKIE_NAME = 'awx_sessionid'
 
 # Maximum number of per-user valid, concurrent sessions.
 # -1 is unlimited
@@ -989,3 +996,8 @@ DEFAULT_EXECUTION_QUEUE_NAME = 'default'
 DEFAULT_EXECUTION_QUEUE_POD_SPEC_OVERRIDE = ''
 # Name of the default controlplane queue
 DEFAULT_CONTROL_PLANE_QUEUE_NAME = 'controlplane'
+
+# Extend container runtime attributes.
+# For example, to disable SELinux in containers for podman
+# DEFAULT_CONTAINER_RUN_OPTIONS = ['--security-opt', 'label=disable']
+DEFAULT_CONTAINER_RUN_OPTIONS = ['--network', 'slirp4netns:enable_ipv6=true']

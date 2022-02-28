@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16.14.0
 ARG NPMRC_FILE=.npmrc
 ENV NPMRC_FILE=${NPMRC_FILE}
 ARG TARGET='https://awx:8043'
@@ -6,7 +6,11 @@ ENV TARGET=${TARGET}
 ENV CI=true
 WORKDIR /ui
 ADD .eslintignore .eslintignore
+<<<<<<< HEAD:awx/ui/Dockerfile
 ADD .eslintrc .eslintrc
+=======
+ADD .eslintrc.json .eslintrc.json
+>>>>>>> upstream/devel:awx/ui_next/Dockerfile
 ADD .linguirc .linguirc
 ADD jsconfig.json jsconfig.json
 ADD public public

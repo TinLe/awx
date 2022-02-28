@@ -109,12 +109,20 @@ function NotificationTemplateDetail({ template, defaultMessages }) {
           value={template.description}
           dataCy="nt-detail-description"
         />
+<<<<<<< HEAD:awx/ui/src/screens/NotificationTemplate/NotificationTemplateDetail/NotificationTemplateDetail.js
         {summary_fields.recent_notifications.length && (
+=======
+        {summary_fields.recent_notifications.length ? (
+>>>>>>> upstream/devel:awx/ui_next/src/screens/NotificationTemplate/NotificationTemplateDetail/NotificationTemplateDetail.js
           <Detail
             label={t`Status`}
             value={<StatusLabel status={testStatus} />}
           />
+<<<<<<< HEAD:awx/ui/src/screens/NotificationTemplate/NotificationTemplateDetail/NotificationTemplateDetail.js
         )}
+=======
+        ) : null}
+>>>>>>> upstream/devel:awx/ui_next/src/screens/NotificationTemplate/NotificationTemplateDetail/NotificationTemplateDetail.js
         {summary_fields.organization ? (
           <Detail
             label={t`Organization`}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
@@ -55,6 +55,8 @@ function DataListToolbar({
   pagination,
   enableNegativeFiltering,
   enableRelatedFuzzyFiltering,
+  handleIsAnsibleFactsSelected,
+  isFilterCleared,
 }) {
   const { search } = useLocation();
   const showExpandCollapse = onCompact && onExpand;
@@ -77,6 +79,14 @@ function DataListToolbar({
       setIsKebabOpen(false);
     }
   }, [isKebabModalOpen]);
+
+  const kebabProviderValue = useMemo(
+    () => ({
+      isKebabified: true,
+      onKebabModalChange: setIsKebabModalOpen,
+    }),
+    [setIsKebabModalOpen]
+  );
   return (
     <Toolbar
       id={`${qsConfig.namespace}-list-toolbar`}
@@ -135,6 +145,8 @@ function DataListToolbar({
               onRemove={onRemove}
               enableNegativeFiltering={enableNegativeFiltering}
               enableRelatedFuzzyFiltering={enableRelatedFuzzyFiltering}
+              handleIsAnsibleFactsSelected={handleIsAnsibleFactsSelected}
+              isFilterCleared={isFilterCleared}
             />
           </ToolbarItem>
           {sortColumns && (
@@ -145,25 +157,18 @@ function DataListToolbar({
         </ToolbarToggleGroup>
         {showExpandCollapse && (
           <ToolbarGroup>
-            <>
-              <ToolbarItem>
-                <ExpandCollapse
-                  isCompact={isCompact}
-                  onCompact={onCompact}
-                  onExpand={onExpand}
-                />
-              </ToolbarItem>
-            </>
+            <ToolbarItem>
+              <ExpandCollapse
+                isCompact={isCompact}
+                onCompact={onCompact}
+                onExpand={onExpand}
+              />
+            </ToolbarItem>
           </ToolbarGroup>
         )}
         {isAdvancedSearchShown && additionalControls.length > 0 && (
           <ToolbarItem>
-            <KebabifiedProvider
-              value={{
-                isKebabified: true,
-                onKebabModalChange: setIsKebabModalOpen,
-              }}
-            >
+            <KebabifiedProvider value={kebabProviderValue}>
               <Dropdown
                 toggle={
                   <KebabToggle

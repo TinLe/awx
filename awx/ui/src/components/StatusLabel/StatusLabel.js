@@ -1,42 +1,29 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import 'styled-components/macro';
 import React from 'react';
 import { t } from '@lingui/macro';
 import { oneOf } from 'prop-types';
 import { Label, Tooltip } from '@patternfly/react-core';
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-  SyncAltIcon,
-  ExclamationTriangleIcon,
-  ClockIcon,
-  MinusCircleIcon,
-} from '@patternfly/react-icons';
-import styled, { keyframes } from 'styled-components';
-
-const Spin = keyframes`
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(1turn);
-  }
-`;
-
-const RunningIcon = styled(SyncAltIcon)`
-  animation: ${Spin} 1.75s linear infinite;
-`;
+import icons from '../StatusIcon/icons';
 
 const colors = {
   success: 'green',
   successful: 'green',
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+=======
+  ok: 'green',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
   healthy: 'green',
   failed: 'red',
   error: 'red',
+  unreachable: 'red',
   running: 'blue',
   pending: 'blue',
+  skipped: 'blue',
   waiting: 'grey',
   disabled: 'grey',
   canceled: 'orange',
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
 };
 const icons = {
   success: CheckCircleIcon,
@@ -49,6 +36,9 @@ const icons = {
   waiting: ClockIcon,
   disabled: MinusCircleIcon,
   canceled: ExclamationTriangleIcon,
+=======
+  changed: 'orange',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
 };
 
 export default function StatusLabel({ status, tooltipContent = '' }) {
@@ -56,15 +46,19 @@ export default function StatusLabel({ status, tooltipContent = '' }) {
     success: t`Success`,
     healthy: t`Healthy`,
     successful: t`Successful`,
+    ok: t`OK`,
     failed: t`Failed`,
     error: t`Error`,
+    unreachable: t`Unreachable`,
     running: t`Running`,
     pending: t`Pending`,
+    skipped: t`Skipped'`,
     waiting: t`Waiting`,
     disabled: t`Disabled`,
     canceled: t`Canceled`,
+    changed: t`Changed`,
   };
-  const label = upperCaseStatus[status] || t`Undefined`;
+  const label = upperCaseStatus[status] || status;
   const color = colors[status] || 'grey';
   const Icon = icons[status];
 
@@ -91,13 +85,20 @@ StatusLabel.propTypes = {
   status: oneOf([
     'success',
     'successful',
+<<<<<<< HEAD:awx/ui/src/components/StatusLabel/StatusLabel.js
+=======
+    'ok',
+>>>>>>> upstream/devel:awx/ui_next/src/components/StatusLabel/StatusLabel.js
     'healthy',
     'failed',
     'error',
+    'unreachable',
     'running',
     'pending',
+    'skipped',
     'waiting',
     'disabled',
     'canceled',
+    'changed',
   ]).isRequired,
 };

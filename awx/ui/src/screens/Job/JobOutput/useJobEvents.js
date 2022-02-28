@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/* eslint-disable react/destructuring-assignment */
+>>>>>>> upstream/devel
 import { useState, useEffect, useReducer } from 'react';
 
 const initialState = {
@@ -10,12 +14,20 @@ const initialState = {
   // events with parent events that aren't yet loaded.
   // arrays indexed by parent uuid
   eventsWithoutParents: {},
+<<<<<<< HEAD
+=======
+  isAllCollapsed: false,
+>>>>>>> upstream/devel
 };
 export const ADD_EVENTS = 'ADD_EVENTS';
 export const TOGGLE_NODE_COLLAPSED = 'TOGGLE_NODE_COLLAPSED';
 export const SET_EVENT_NUM_CHILDREN = 'SET_EVENT_NUM_CHILDREN';
 export const CLEAR_EVENTS = 'CLEAR_EVENTS';
 export const REBUILD_TREE = 'REBUILD_TREE';
+<<<<<<< HEAD
+=======
+export const TOGGLE_COLLAPSE_ALL = 'TOGGLE_COLLAPSE_ALL';
+>>>>>>> upstream/devel
 
 export default function useJobEvents(callbacks, isFlatMode) {
   const [actionQueue, setActionQueue] = useState([]);
@@ -24,7 +36,10 @@ export default function useJobEvents(callbacks, isFlatMode) {
   };
   const reducer = jobEventsReducer(callbacks, isFlatMode, enqueueAction);
   const [state, dispatch] = useReducer(reducer, initialState);
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/devel
   useEffect(() => {
     setActionQueue((queue) => {
       const action = queue[0];
@@ -43,8 +58,15 @@ export default function useJobEvents(callbacks, isFlatMode) {
   return {
     addEvents: (events) => dispatch({ type: ADD_EVENTS, events }),
     getNodeByUuid: (uuid) => getNodeByUuid(state, uuid),
+<<<<<<< HEAD
     toggleNodeIsCollapsed: (uuid) =>
       dispatch({ type: TOGGLE_NODE_COLLAPSED, uuid }),
+=======
+    toggleNodeIsCollapsed: (uuid, isCollapsed) =>
+      dispatch({ type: TOGGLE_NODE_COLLAPSED, uuid, isCollapsed }),
+    toggleCollapseAll: (isCollapsed) =>
+      dispatch({ type: TOGGLE_COLLAPSE_ALL, isCollapsed }),
+>>>>>>> upstream/devel
     getEventForRow: (rowIndex) => getEventForRow(state, rowIndex),
     getNodeForRow: (rowIndex) => getNodeForRow(state, rowIndex),
     getTotalNumChildren: (uuid) => {
@@ -57,6 +79,10 @@ export default function useJobEvents(callbacks, isFlatMode) {
     getEvent: (eventIndex) => getEvent(state, eventIndex),
     clearLoadedEvents: () => dispatch({ type: CLEAR_EVENTS }),
     rebuildEventsTree: () => dispatch({ type: REBUILD_TREE }),
+<<<<<<< HEAD
+=======
+    isAllCollapsed: state.isAllCollapsed,
+>>>>>>> upstream/devel
   };
 }
 
@@ -65,6 +91,11 @@ export function jobEventsReducer(callbacks, isFlatMode, enqueueAction) {
     switch (action.type) {
       case ADD_EVENTS:
         return addEvents(state, action.events);
+<<<<<<< HEAD
+=======
+      case TOGGLE_COLLAPSE_ALL:
+        return toggleCollapseAll(state, action.isCollapsed);
+>>>>>>> upstream/devel
       case TOGGLE_NODE_COLLAPSED:
         return toggleNodeIsCollapsed(state, action.uuid);
       case SET_EVENT_NUM_CHILDREN:
@@ -135,7 +166,11 @@ export function jobEventsReducer(callbacks, isFlatMode, enqueueAction) {
     const eventIndex = event.counter;
     const newNode = {
       eventIndex,
+<<<<<<< HEAD
       isCollapsed: false,
+=======
+      isCollapsed: state.isAllCollapsed,
+>>>>>>> upstream/devel
       children: [],
     };
     const index = state.tree.findIndex((node) => node.eventIndex > eventIndex);
@@ -167,7 +202,11 @@ export function jobEventsReducer(callbacks, isFlatMode, enqueueAction) {
     }
     const newNode = {
       eventIndex,
+<<<<<<< HEAD
       isCollapsed: false,
+=======
+      isCollapsed: state.isAllCollapsed,
+>>>>>>> upstream/devel
       children: [],
     };
     const index = parent.children.findIndex(
@@ -400,7 +439,10 @@ function getNumCollapsedChildren(node) {
   if (node.isCollapsed) {
     return getTotalNumChildren(node);
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/devel
   let sum = 0;
   node.children.forEach((child) => {
     sum += getNumCollapsedChildren(child);
@@ -409,10 +451,47 @@ function getNumCollapsedChildren(node) {
 }
 
 function toggleNodeIsCollapsed(state, eventUuid) {
+<<<<<<< HEAD
   return updateNodeByUuid(state, eventUuid, (node) => ({
     ...node,
     isCollapsed: !node.isCollapsed,
   }));
+=======
+  return {
+    ...updateNodeByUuid(state, eventUuid, (node) => ({
+      ...node,
+      isCollapsed: !node.isCollapsed,
+    })),
+    isAllCollapsed: false,
+  };
+}
+
+function toggleCollapseAll(state, isAllCollapsed) {
+  const newTree = state.tree.map((node) =>
+    _toggleNestedNodes(state.events, node, isAllCollapsed)
+  );
+  return { ...state, tree: newTree, isAllCollapsed };
+}
+
+function _toggleNestedNodes(events, node, isCollapsed) {
+  const {
+    parent_uuid,
+    event_data: { playbook_uuid },
+    uuid,
+  } = events[node.eventIndex];
+
+  const eventShouldNotCollapse = uuid === playbook_uuid || !parent_uuid?.length;
+
+  const children = node.children?.map((nestedNode) =>
+    _toggleNestedNodes(events, nestedNode, isCollapsed)
+  );
+
+  return {
+    ...node,
+    isCollapsed: eventShouldNotCollapse ? false : isCollapsed,
+    children,
+  };
+>>>>>>> upstream/devel
 }
 
 function updateNodeByUuid(state, uuid, update) {

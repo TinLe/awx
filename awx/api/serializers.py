@@ -379,19 +379,22 @@ class BaseSerializer(serializers.ModelSerializer, metaclass=BaseSerializerMetacl
     def _get_related(self, obj):
         return {} if obj is None else self.get_related(obj)
 
-    def _generate_named_url(self, url_path, obj, node):
-        url_units = url_path.split('/')
+    def _generate_friendly_id(self, obj, node):
         reset_counters()
-        named_url = node.generate_named_url(obj)
-        url_units[4] = named_url
-        return '/'.join(url_units)
+        return node.generate_named_url(obj)
 
     def get_related(self, obj):
         res = OrderedDict()
         view = self.context.get('view', None)
         if view and (hasattr(view, 'retrieve') or view.request.method == 'POST') and type(obj) in settings.NAMED_URL_GRAPH:
-            original_url = self.get_url(obj)
-            res['named_url'] = self._generate_named_url(original_url, obj, settings.NAMED_URL_GRAPH[type(obj)])
+            original_path = self.get_url(obj)
+            path_components = original_path.lstrip('/').rstrip('/').split('/')
+
+            friendly_id = self._generate_friendly_id(obj, settings.NAMED_URL_GRAPH[type(obj)])
+            path_components[-1] = friendly_id
+
+            new_path = '/' + '/'.join(path_components) + '/'
+            res['named_url'] = new_path
         if getattr(obj, 'created_by', None):
             res['created_by'] = self.reverse('api:user_detail', kwargs={'pk': obj.created_by.pk})
         if getattr(obj, 'modified_by', None):
@@ -862,7 +865,7 @@ class UnifiedJobSerializer(BaseSerializer):
         if 'elapsed' in ret:
             if obj and obj.pk and obj.started and not obj.finished:
                 td = now() - obj.started
-                ret['elapsed'] = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10 ** 6) / (10 ** 6 * 1.0)
+                ret['elapsed'] = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / (10**6 * 1.0)
             ret['elapsed'] = float(ret['elapsed'])
         # Because this string is saved in the db in the source language,
         # it must be marked for translation after it is pulled from the db, not when set
@@ -1640,7 +1643,25 @@ class BaseSerializerWithVariables(BaseSerializer):
         return vars_validate_or_raise(value)
 
 
-class InventorySerializer(BaseSerializerWithVariables):
+class LabelsListMixin(object):
+    def _summary_field_labels(self, obj):
+        label_list = [{'id': x.id, 'name': x.name} for x in obj.labels.all()[:10]]
+        if has_model_field_prefetched(obj, 'labels'):
+            label_ct = len(obj.labels.all())
+        else:
+            if len(label_list) < 10:
+                label_ct = len(label_list)
+            else:
+                label_ct = obj.labels.count()
+        return {'count': label_ct, 'results': label_list}
+
+    def get_summary_fields(self, obj):
+        res = super(LabelsListMixin, self).get_summary_fields(obj)
+        res['labels'] = self._summary_field_labels(obj)
+        return res
+
+
+class InventorySerializer(LabelsListMixin, BaseSerializerWithVariables):
     show_capabilities = ['edit', 'delete', 'adhoc', 'copy']
     capabilities_prefetch = ['admin', 'adhoc', {'copy': 'organization.inventory_admin'}]
 
@@ -1681,6 +1702,7 @@ class InventorySerializer(BaseSerializerWithVariables):
                 object_roles=self.reverse('api:inventory_object_roles_list', kwargs={'pk': obj.pk}),
                 instance_groups=self.reverse('api:inventory_instance_groups_list', kwargs={'pk': obj.pk}),
                 copy=self.reverse('api:inventory_copy', kwargs={'pk': obj.pk}),
+                labels=self.reverse('api:inventory_label_list', kwargs={'pk': obj.pk}),
             )
         )
         if obj.organization:
@@ -2748,24 +2770,6 @@ class OrganizationCredentialSerializerCreate(CredentialSerializerCreate):
     class Meta:
         model = Credential
         fields = ('*', '-user', '-team')
-
-
-class LabelsListMixin(object):
-    def _summary_field_labels(self, obj):
-        label_list = [{'id': x.id, 'name': x.name} for x in obj.labels.all()[:10]]
-        if has_model_field_prefetched(obj, 'labels'):
-            label_ct = len(obj.labels.all())
-        else:
-            if len(label_list) < 10:
-                label_ct = len(label_list)
-            else:
-                label_ct = obj.labels.count()
-        return {'count': label_ct, 'results': label_list}
-
-    def get_summary_fields(self, obj):
-        res = super(LabelsListMixin, self).get_summary_fields(obj)
-        res['labels'] = self._summary_field_labels(obj)
-        return res
 
 
 class JobOptionsSerializer(LabelsListMixin, BaseSerializer):
@@ -4787,7 +4791,7 @@ class InstanceNodeSerializer(BaseSerializer):
     def get_node_state(self, obj):
         if not obj.enabled:
             return "disabled"
-        return "unhealthy" if obj.errors else "healthy"
+        return "error" if obj.errors else "healthy"
 
 
 class InstanceSerializer(BaseSerializer):
@@ -4833,7 +4837,8 @@ class InstanceSerializer(BaseSerializer):
         res['jobs'] = self.reverse('api:instance_unified_jobs_list', kwargs={'pk': obj.pk})
         res['instance_groups'] = self.reverse('api:instance_instance_groups_list', kwargs={'pk': obj.pk})
         if self.context['request'].user.is_superuser or self.context['request'].user.is_system_auditor:
-            res['health_check'] = self.reverse('api:instance_health_check', kwargs={'pk': obj.pk})
+            if obj.node_type != 'hop':
+                res['health_check'] = self.reverse('api:instance_health_check', kwargs={'pk': obj.pk})
         return res
 
     def get_consumed_capacity(self, obj):
