@@ -46,6 +46,7 @@ const instance = [
     type: 'instance',
     url: '/api/v2/instances/1/',
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
 =======
     related: {
@@ -53,6 +54,37 @@ const instance = [
       instance_groups: '/api/v2/instances/1/instance_groups/',
     },
 >>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+>>>>>>> upstream/devel
+    uuid: '00000000-0000-0000-0000-000000000001',
+    hostname: 'awx-control',
+    created: '2020-07-14T19:03:49.000054Z',
+    modified: '2020-08-12T20:08:02.836748Z',
+    capacity_adjustment: '0.40',
+    version: '13.0.0',
+    last_health_check: '2021-09-15T18:02:07.270664Z',
+    capacity: 10,
+    consumed_capacity: 0,
+    percent_capacity_remaining: 60.0,
+    jobs_running: 0,
+    jobs_total: 68,
+    last_health_check: '2021-09-15T18:02:07.270664Z',
+    cpu: 6,
+    memory: 2087469056,
+    cpu_capacity: 24,
+    mem_capacity: 1,
+    enabled: true,
+    managed_by_policy: true,
+    node_type: 'hybrid',
+  },
+  {
+    id: 2,
+    type: 'instance',
+    url: '/api/v2/instances/1/',
+    related: {
+      jobs: '/api/v2/instances/1/jobs/',
+      instance_groups: '/api/v2/instances/1/instance_groups/',
+    },
 =======
 >>>>>>> upstream/devel
     uuid: '00000000-0000-0000-0000-000000000001',
@@ -75,7 +107,15 @@ const instance = [
     managed_by_policy: true,
 <<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+<<<<<<< HEAD
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
     node_type: 'hop',
+=======
+    node_type: 'control',
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+    node_type: 'hop',
+>>>>>>> upstream/devel
 =======
     node_type: 'control',
 >>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
@@ -174,7 +214,15 @@ describe('<InstanceListItem/>', () => {
     expect(wrapper.find('Td[dataLabel="Name"]').find('Link').prop('to')).toBe(
 <<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+<<<<<<< HEAD
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
       '/instances/1/details'
+=======
+      '/instance_groups/1/instances/1/details'
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+      '/instances/1/details'
+>>>>>>> upstream/devel
 =======
       '/instance_groups/1/instances/1/details'
 >>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
@@ -294,7 +342,16 @@ describe('<InstanceListItem/>', () => {
     expect(wrapper.find('InstanceListItem').prop('isExpanded')).toBe(true);
 <<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+<<<<<<< HEAD
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
 
+=======
+    expect(wrapper.find('Detail[label="Running Jobs"]').prop('value')).toBe(0);
+    expect(wrapper.find('Detail[label="Total Jobs"]').prop('value')).toBe(68);
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+
+>>>>>>> upstream/devel
 =======
     expect(wrapper.find('Detail[label="Running Jobs"]').prop('value')).toBe(0);
     expect(wrapper.find('Detail[label="Total Jobs"]').prop('value')).toBe(68);
@@ -311,6 +368,10 @@ describe('<InstanceListItem/>', () => {
   });
 <<<<<<< HEAD
 <<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+<<<<<<< HEAD
+<<<<<<< HEAD:awx/ui/src/screens/Instances/InstanceList/InstanceListItem.test.js
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
   test('Hop should not render some things', async () => {
@@ -335,6 +396,11 @@ describe('<InstanceListItem/>', () => {
     expect(wrapper.find("Td[dataLabel='Capacity Adjustment']").length).toBe(0);
   });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.test.js
 =======

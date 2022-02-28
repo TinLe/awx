@@ -18,6 +18,10 @@ import { SearchIcon, QuestionCircleIcon } from '@patternfly/react-icons';
 import styled from 'styled-components';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { useLocation } from 'react-router-dom';
+>>>>>>> upstream/devel
 =======
 import { useLocation } from 'react-router-dom';
 >>>>>>> upstream/devel
@@ -52,6 +56,11 @@ function AdvancedSearch({
   enableRelatedFuzzyFiltering,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected,
+  isFilterCleared,
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected,
   isFilterCleared,
@@ -66,7 +75,10 @@ function AdvancedSearch({
   );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
 =======
@@ -79,7 +91,10 @@ function AdvancedSearch({
   const [searchValue, setSearchValue] = useState('');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
   const [isTextInputDisabled, setIsTextInputDisabled] = useState(false);
@@ -113,6 +128,9 @@ function AdvancedSearch({
   }, [keySelection, pathname, search]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
@@ -129,7 +147,11 @@ function AdvancedSearch({
   useEffect(() => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (relatedSearchKeySelected) {
+=======
+    if (relatedSearchKeySelected && keySelection !== 'ansible_facts') {
+>>>>>>> upstream/devel
 =======
     if (relatedSearchKeySelected && keySelection !== 'ansible_facts') {
 >>>>>>> upstream/devel
@@ -159,8 +181,11 @@ function AdvancedSearch({
         .join('__');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       onSearch(actualSearchKey, searchValue);
 =======
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
       if (keySelection === 'ansible_facts') {
@@ -170,6 +195,9 @@ function AdvancedSearch({
         onSearch(actualSearchKey, searchValue);
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
@@ -225,6 +253,7 @@ function AdvancedSearch({
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   return (
     <AdvancedGroup>
       {lookupSelection === 'search' ? (
@@ -237,6 +266,8 @@ function AdvancedSearch({
         renderSetType()
       )}
 =======
+=======
+>>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
   const renderLookupType = () => {
@@ -308,6 +339,9 @@ function AdvancedSearch({
     <AdvancedGroup>
       {renderLookupSelection()}
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
@@ -365,6 +399,7 @@ function AdvancedSearch({
       </Select>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       {relatedSearchKeySelected ? (
         <RelatedLookupTypeInput
           value={lookupSelection}
@@ -393,11 +428,16 @@ function AdvancedSearch({
 =======
 =======
 >>>>>>> upstream/devel
+=======
+>>>>>>> upstream/devel
       {renderLookupType()}
 
       <InputGroup>
         {renderTextInput()}
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/devel
+=======
 >>>>>>> upstream/devel
 =======
 >>>>>>> upstream/devel
@@ -437,6 +477,10 @@ AdvancedSearch.propTypes = {
   enableRelatedFuzzyFiltering: bool,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: func,
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected: func,
 >>>>>>> upstream/devel
@@ -453,6 +497,10 @@ AdvancedSearch.defaultProps = {
   enableRelatedFuzzyFiltering: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  handleIsAnsibleFactsSelected: () => {},
+>>>>>>> upstream/devel
 =======
   handleIsAnsibleFactsSelected: () => {},
 >>>>>>> upstream/devel

@@ -98,16 +98,6 @@ function Search({
     }
   };
 
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
-  const chipsByKey = getChipsByKey(
-    parseQueryString(qsConfig, location.search),
-    columns,
-    qsConfig
-  );
-=======
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
   const params = parseQueryString(qsConfig, location.search);
   if (params?.host_filter) {
     params.ansible_facts = params.host_filter.substring(
@@ -116,10 +106,6 @@ function Search({
     delete params.host_filter;
   }
   const chipsByKey = getChipsByKey(params, columns, qsConfig);
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
 
   const { name: searchColumnName } = columns.find(
     ({ key }) => key === searchKey
@@ -185,42 +171,6 @@ function Search({
             />
           )) ||
             (options && (
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
-              <>
-                <Select
-                  variant={SelectVariant.checkbox}
-                  aria-label={name}
-                  typeAheadAriaLabel={name}
-                  onToggle={setIsFilterDropdownOpen}
-                  onSelect={(event, selection) =>
-                    handleFilterDropdownSelect(key, event, selection)
-                  }
-                  selections={chipsByKey[key].chips.map((chip) => {
-                    const [, ...value] = chip.key.split(':');
-                    return value.join(':');
-                  })}
-                  isOpen={isFilterDropdownOpen}
-                  placeholderText={t`Filter By ${name}`}
-                  ouiaId={`filter-by-${key}`}
-                  isDisabled={isDisabled}
-                  maxHeight={maxSelectHeight}
-                  noResultsFoundText={t`No results found`}
-                >
-                  {options.map(([optionKey, optionLabel]) => (
-                    <SelectOption
-                      key={optionKey}
-                      value={optionKey}
-                      inputId={`select-option-${optionKey}`}
-                    >
-                      {optionLabel}
-                    </SelectOption>
-                  ))}
-                </Select>
-              </>
-=======
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
               <Select
                 variant={SelectVariant.checkbox}
                 aria-label={name}
@@ -250,10 +200,6 @@ function Search({
                   </SelectOption>
                 ))}
               </Select>
-<<<<<<< HEAD:awx/ui/src/components/Search/Search.js
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/Search/Search.js
             )) ||
             (isBoolean && (
               <Select

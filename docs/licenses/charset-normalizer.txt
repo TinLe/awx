@@ -1,22 +1,6 @@
 MIT License
 
-<<<<<<< HEAD:docs/licenses/ui/emotion-stylis.txt
-<<<<<<< HEAD
-Copyright (c) Emotion team and other contributors
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD:docs/licenses/ui/emotion-stylis.txt
-Copyright (c) Emotion team and other contributors
-=======
 Copyright (c) 2019 TAHRI Ahmed R.
->>>>>>> upstream/devel:docs/licenses/charset-normalizer.txt
-=======
-Copyright (c) Emotion team and other contributors
->>>>>>> upstream/devel
->>>>>>> upstream/devel
-=======
-Copyright (c) 2019 TAHRI Ahmed R.
->>>>>>> upstream/devel:docs/licenses/charset-normalizer.txt
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

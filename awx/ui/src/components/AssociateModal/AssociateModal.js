@@ -149,52 +149,6 @@ function AssociateModal({
             key: 'modified_by__username__icontains',
           },
         ]}
-<<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
-<<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
-      >
-        <OptionsList
-          displayKey={displayKey}
-          contentError={contentError}
-          columns={columns}
-          deselectItem={handleSelect}
-          header={header}
-          isLoading={isLoading}
-          multiple
-          optionCount={itemCount}
-          options={items}
-          qsConfig={QS_CONFIG(displayKey)}
-          readOnly={false}
-          selectItem={handleSelect}
-          value={selected}
-          searchColumns={[
-            {
-              name: t`Name`,
-              key: `${displayKey}__icontains`,
-              isDefault: true,
-            },
-            {
-              name: t`Created By (Username)`,
-              key: 'created_by__username__icontains',
-            },
-            {
-              name: t`Modified By (Username)`,
-              key: 'modified_by__username__icontains',
-            },
-          ]}
-          sortColumns={[
-            {
-              name: t`Name`,
-              key: `${displayKey}`,
-            },
-          ]}
-          searchableKeys={searchableKeys}
-          relatedSearchableKeys={relatedSearchableKeys}
-        />
-      </Modal>
-    </>
-=======
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
         sortColumns={[
           {
             name: t`Name`,
@@ -205,10 +159,6 @@ function AssociateModal({
         relatedSearchableKeys={relatedSearchableKeys}
       />
     </Modal>
-<<<<<<< HEAD:awx/ui/src/components/AssociateModal/AssociateModal.js
->>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
-=======
->>>>>>> upstream/devel:awx/ui_next/src/components/AssociateModal/AssociateModal.js
   );
 }
 

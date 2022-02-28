@@ -1,13 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-
-import { Plural, t } from '@lingui/macro';
-=======
-=======
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
 import { t } from '@lingui/macro';
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
 import { useLocation, useParams } from 'react-router-dom';
 import 'styled-components/macro';
 
@@ -30,16 +22,7 @@ import useRequest, {
 import useSelected from 'hooks/useSelected';
 import { InstanceGroupsAPI, InstancesAPI } from 'api';
 import { getQSConfig, parseQueryString, mergeParams } from 'util/qs';
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-
-import { Button, Tooltip } from '@patternfly/react-core';
-=======
 import HealthCheckButton from 'components/HealthCheckButton/HealthCheckButton';
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
-=======
-import HealthCheckButton from 'components/HealthCheckButton/HealthCheckButton';
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
 import InstanceListItem from './InstanceListItem';
 
 const QS_CONFIG = getQSConfig('instance', {
@@ -97,29 +80,6 @@ function InstanceList() {
     fetchInstances();
   }, [fetchInstances]);
 
-  const { error: healthCheckError, request: fetchHealthCheck } = useRequest(
-    useCallback(async () => {
-      await Promise.all(selected.map(({ id }) => InstancesAPI.healthCheck(id)));
-      fetchInstances();
-    }, [selected, fetchInstances])
-  );
-
-  const {
-    error: healthCheckError,
-    request: fetchHealthCheck,
-    isLoading: isHealthCheckLoading,
-  } = useRequest(
-    useCallback(async () => {
-      await Promise.all(selected.map(({ id }) => InstancesAPI.healthCheck(id)));
-      fetchInstances();
-    }, [selected, fetchInstances])
-  );
-
-  const handleHealthCheck = async () => {
-    await fetchHealthCheck();
-    clearSelected();
-  };
-
   const {
     error: healthCheckError,
     request: fetchHealthCheck,
@@ -167,15 +127,7 @@ function InstanceList() {
       async (instancesToAssociate) => {
         await Promise.all(
           instancesToAssociate
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-            .filter((i) => i.node_type !== 'control')
-=======
             .filter((i) => i.node_type !== 'control' || i.node_type !== 'hop')
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
-=======
-            .filter((i) => i.node_type !== 'control' || i.node_type !== 'hop')
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             .map((instance) =>
               InstanceGroupsAPI.associateInstance(instanceGroupId, instance.id)
             )
@@ -203,15 +155,7 @@ function InstanceList() {
       InstancesAPI.read(
         mergeParams(params, {
           ...{ not__rampart_groups__id: instanceGroupId },
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-          ...{ not__node_type: 'control' },
-=======
           ...{ not__node_type: ['hop', 'control'] },
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
-=======
-          ...{ not__node_type: ['hop', 'control'] },
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
         })
       ),
     [instanceGroupId]
@@ -288,42 +232,11 @@ function InstanceList() {
                 itemsToDisassociate={selected}
                 modalTitle={t`Disassociate instance from instance group?`}
               />,
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-              <Tooltip
-                content={
-                  selected.length ? (
-                    <Plural
-                      value={selected.length}
-                      one="Click to run a health check on the selected instance."
-                      other="Click to run a health check on the selected instances."
-                    />
-                  ) : (
-                    t`Select an instance to run a health check.`
-                  )
-                }
-              >
-                <div>
-                  <Button
-                    isDisabled={!canAdd || !selected.length}
-                    variant="secondary"
-                    ouiaId="health-check"
-                    onClick={fetchHealthCheck}
-                  >{t`Health Check`}</Button>
-                </div>
-              </Tooltip>,
-=======
-=======
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
               <HealthCheckButton
                 isDisabled={!canAdd}
                 onClick={handleHealthCheck}
                 selectedItems={selected}
               />,
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
-=======
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             ]}
             emptyStateControls={
               canAdd ? (
@@ -339,16 +252,7 @@ function InstanceList() {
           <HeaderRow qsConfig={QS_CONFIG} isExpandable>
             <HeaderCell sortKey="hostname">{t`Name`}</HeaderCell>
             <HeaderCell sortKey="errors">{t`Status`}</HeaderCell>
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceList.js
-            <HeaderCell>{t`Running Jobs`}</HeaderCell>
-            <HeaderCell>{t`Total Jobs`}</HeaderCell>
-=======
             <HeaderCell sortKey="node_type">{t`Node Type`}</HeaderCell>
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
-=======
-            <HeaderCell sortKey="node_type">{t`Node Type`}</HeaderCell>
->>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceList.js
             <HeaderCell>{t`Capacity Adjustment`}</HeaderCell>
             <HeaderCell>{t`Used Capacity`}</HeaderCell>
             <HeaderCell>{t`Actions`}</HeaderCell>

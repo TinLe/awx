@@ -63,7 +63,10 @@ function InstanceListItem({
   );
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
   const { id } = useParams();
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
@@ -197,9 +200,12 @@ function InstanceListItem({
             <DetailList>
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
               <Detail label={t`Node Type`} value={instance.node_type} />
               <Detail
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
               <Detail
@@ -215,6 +221,9 @@ function InstanceListItem({
               <Detail
                 data-cy="policy-type"
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
@@ -224,6 +233,10 @@ function InstanceListItem({
               <Detail
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
 <<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+<<<<<<< HEAD:awx/ui/src/screens/InstanceGroup/Instances/InstanceListItem.js
+=======
+                data-cy="last-health-check"
+>>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js
 =======
                 data-cy="last-health-check"
 >>>>>>> upstream/devel:awx/ui_next/src/screens/InstanceGroup/Instances/InstanceListItem.js

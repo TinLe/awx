@@ -123,7 +123,10 @@ describe('<InventoryEdit />', () => {
     });
 <<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 <<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+<<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 =======
+=======
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 
@@ -144,6 +147,9 @@ describe('<InventoryEdit />', () => {
       id: 1,
     });
 <<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+<<<<<<< HEAD:awx/ui/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+>>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
+=======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js
 =======
 >>>>>>> upstream/devel:awx/ui_next/src/screens/Inventory/InventoryEdit/InventoryEdit.test.js

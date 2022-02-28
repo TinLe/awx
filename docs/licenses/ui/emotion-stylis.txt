@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 MIT License
 
 <<<<<<< HEAD
@@ -16,6 +17,16 @@ Copyright (c) 2019 TAHRI Ahmed R.
 >>>>>>> upstream/devel:docs/licenses/charset-normalizer.txt
 =======
 Copyright (c) Emotion team and other contributors
+>>>>>>> upstream/devel
+=======
+
+MIT License
+
+<<<<<<< HEAD:docs/licenses/ui/shallowequal.txt
+Copyright (c) 2017 Alberto Leal <mailforalberto@gmail.com> (github.com/dashed)
+=======
+Copyright (c) Emotion team and other contributors
+>>>>>>> upstream/devel:docs/licenses/ui/emotion-stylis.txt
 >>>>>>> upstream/devel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
