@@ -250,7 +250,7 @@ pygerduty==0.38.2
     # via -r requirements.in
 pyhamcrest==2.0.2
     # via twisted
-pyjwt==1.7.1
+pyjwt==2.4.0
     # via
     #   adal
     #   social-auth-core
