@@ -10,7 +10,7 @@ cryptography>=39.0.1 ## https://github.com/ansible/awx/security/dependabot/90
 Cython<3 # Since the bump to PyYAML 5.4.1 this is now a mandatory dep
 daphne
 distro
-django==4.2  # see UPGRADE BLOCKERs
+django==4.2.1  # see UPGRADE BLOCKERs
 django-auth-ldap
 django-cors-headers
 django-crum
